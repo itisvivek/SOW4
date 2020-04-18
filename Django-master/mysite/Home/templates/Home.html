@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SOW4</title>
+  <style>
+     i {
+      border: solid black;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 3px;
+    }
+    .down {
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+  </style>
+
+  <!-- Bootstrap core CSS
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  -->
+  <!-- Custom styles for this template
+  <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+  -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <div class="d-flex position-fixed" id="wrapper">
+
+    <!-- Sidebar  class="w-25 p-3"-->
+    <div class="bg-light border-right w-25 p-3" id="sidebar-wrapper ">
+      <div class="list-group-item list-group-item-action bg-dark text-primary sidebar-heading">E-SQUARE </div>
+      <div class="list-group list-group-flush">
+        <a href="/Home/SearchWo" class="list-group-item list-group-item-action bg-light">Search Work Orders</a>
+        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseExample"><i class="arrow down"></i> Tracker</a>
+        <div class="collapse" id="collapseExample">
+          <ul class="nested">
+            <li style="list-style-type: none"><a href="/Home/ProjectStatusTracker" class="list-group-item list-group-item-action bg-light">ProjectStatusTracker</a></li>
+            <li style="list-style-type: none"><a href="/Home/ProjectStatusTracker" class="list-group-item list-group-item-action bg-light">ProjectStatusTracker</a></li>
+            <li style="list-style-type: none"><a href="/Home/ProjectStatusTracker" class="list-group-item list-group-item-action bg-light">ProjectStatusTracker</a></li>
+          </ul>
+        </div>
+        <a href="/Home/WorkOrderEscalation" class="list-group-item list-group-item-action bg-light">Work Order Escalation</a>
+
+        <form method="POST">{% csrf_token %}
+          <div align="center">
+            <button class="btn-success nav-link navbar "value="submit" name="Logout">Logout</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <h1 class="mt-4">Home Screen</h1>
+      </div>
+      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>

@@ -15,8 +15,8 @@ def SearchWo(request):
         else:
             P = Pegasus.objects.filter(SvcNo=searchvalue)
         params = {'data' : P}
-        list_teams = request.POST.getlist('team')
         return render(request,'SearchWo.html',params)
     else:
+        #print(request.GET.get())
         return render(request,'SearchWo.html')
 

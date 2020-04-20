@@ -21,53 +21,45 @@
       transform: rotate(45deg);
       -webkit-transform: rotate(45deg);
     }
+    {% block css%}
+    {% endblock %}
   </style>
 
+    <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-  <div class="d-flex position-fixed" id="wrapper">
+  <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right w-25 p-3 " id="sidebar-wrapper">
+    <div class="bg-light border-right col-xl-3 " id="sidebar-wrapper">
         <a href="/Home" class="list-group-item list-group-item-action bg-dark text-primary sidebar-heading">Home</a>
         <div class="list-group list-group-flush ">
             <a href="/Home/SearchWo" class="list-group-item list-group-item-action bg-light">Search Work Orders</a>
             <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" href="#collapseExample"><i class="arrow down"></i> Tracker</a>
             <div class="collapse" id="collapseExample">
               <ul class="nested">
-                <li style="list-style-type: none"><a href="/Home/ProjectStatusTracker" class="list-group-item list-group-item-action bg-light">ProjectStatusTracker</a></li>
-                <li style="list-style-type: none"><a href="/Home/ProjectStatusTracker" class="list-group-item list-group-item-action bg-light">ProjectStatusTracker</a></li>
-                <li style="list-style-type: none"><a href="/Home/ProjectStatusTracker" class="list-group-item list-group-item-action bg-light">ProjectStatusTracker</a></li>
+                <li style="list-style-type: square"><a href="/Home/ProjectStatusTracker" class="list-group-item list-group-item-action bg-light">ProjectStatusTracker</a></li>
+                <li style="list-style-type: square"><a href="/Home/ProjectStatusTracker" class="list-group-item list-group-item-action bg-light">ProjectStatusTracker</a></li>
+                <li style="list-style-type: square"><a href="/Home/ProjectStatusTracker" class="list-group-item list-group-item-action bg-light">ProjectStatusTracker</a></li>
               </ul>
         </div>
         <a href="/Home/WorkOrderEscalation" class="list-group-item list-group-item-action bg-light">Work Order Escalation</a>
-    </div>
+        {% block logout %}
+        {% endblock %}
+      </div>
   </div>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
-    <div id="page-content-wrapper">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          </ul>
-      </div>
-
-      <div class="container-fluid">
-        <h1 class="mt-4"></h1>
-        {% block content %}
-        {% endblock %}
-      </div>
+    <div class="container-fluid col-xl-9">
+      <h1 class="mt-4"></h1>
+      {% block content %}
+      {% endblock %}
     </div>
+
     <!-- /#page-content-wrapper -->
 
   </div>
@@ -84,6 +76,11 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
 

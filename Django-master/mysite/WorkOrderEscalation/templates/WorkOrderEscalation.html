@@ -1,4 +1,16 @@
 {% extends 'Base.html' %}
+{% block css%}
+    th {
+      background: grey;
+      position: sticky;
+      top: 0;
+      <!--
+      background: black;
+      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+       -->
+    }
+{% endblock %}
+
 {% block content %}
 <html>
 <body>
@@ -24,6 +36,8 @@
              <th> Status</th>
              <th> Assignee</th>
              <th> AssignedTeam</th>
+             <th> Escalate</th>
+
         </tr>
         {% for item in params %}
         <tr>

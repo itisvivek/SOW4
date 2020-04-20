@@ -1,30 +1,51 @@
 {% extends 'Base.html' %}
+
+{% block css%}
+    th {
+      background: grey;
+      position: sticky;
+      top: 0;
+      <!--
+      background: black;
+      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+       -->
+    }
+{% endblock %}
+
+
 {% block content %}
-<html>
-<body>
+
 <form method="Post">{% csrf_token %}
 <div align="center">
 <h2>Search using Project Id/ Circuit ID</h2>
 </div>
 
-<br>
-<br>
+<br/>
+<br/>
 
-<form  class ="form-search" method="post">{% csrf_token %}
-  Criteria:
-  <input type="radio" name="Criteria" value="ProjectId" checked="checked">Project ID
-  <input type="radio" name="Criteria" value="SvcNo">Circuit ID
+<form  class ="form-inline" method="post">{% csrf_token %}
+
+<div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="customRadioInline1" checked="checked" value="ProjectId" name="Criteria" class="custom-control-input">
+  <label class="custom-control-label" for="customRadioInline1">Project ID</label>
+</div>
+<div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="customRadioInline2" value="SvcNo" name="Criteria" class="custom-control-input">
+  <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
+</div>
   <br>
-  <br>
-  <label class = for="text" mr-4 >Search:</label>
-  <input class = "input-medium search-query"  type="text" name="text" id="text">
-  <input type="submit" class="btn btn-success" value="Go">
+ <nav class="navbar navbar-light bg-light col-xl-4">
+    <input class="form-control mr-sm-2 my-2 " style="width:200px" name="text" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</nav>
 </form>
 
+
+<br/>
 <div style="height: 400px; overflow: auto" scrollable>
 <table class="table table-dark">
-
-        <tr>
+    <thead>
+        <tr >
              <th> ProjectId</th>
              <th> WorkOrder</th>
              <th> WorkOrderStatus</th>
@@ -33,7 +54,13 @@
              <th> CRD</th>
              <th> Speed</th>
              <th> Updates</th>
+             <th> Updates</th>
+             <th> Updates</th>
+             <th> Updates</th>
+             <th> Updates</th>
+             <th> Updates</th>
         </tr>
+        </thead>
         {% for item in data %}
         <tr>
             <td>{{item.ProjectId}}</td>
@@ -43,6 +70,11 @@
             <td>{{item.SvcOrderStatus}}</td>
             <td>{{item.CRD}}</td>
             <td>{{item.Speed}}</td>
+            <td>{{item.Updates}}</td>
+            <td>{{item.Updates}}</td>
+            <td>{{item.Updates}}</td>
+            <td>{{item.Updates}}</td>
+            <td>{{item.Updates}}</td>
             <td>{{item.Updates}}</td>
         </tr>
     {% endfor %}
@@ -54,6 +86,5 @@
 
 
 </form>
-</body>
-</html>
+
 {% endblock %}

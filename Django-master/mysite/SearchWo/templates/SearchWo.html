@@ -22,6 +22,7 @@
 
 <br/>
 <br/>
+<nav class="navbar navbar-light bg-light ">
 
 <form  class ="form-inline" method="post">{% csrf_token %}
 
@@ -34,12 +35,12 @@
   <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
 </div>
   <br>
- <nav class="navbar navbar-light bg-light col-xl-4">
-    <input class="form-control mr-sm-2 my-2 " style="width:200px" name="text" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</nav>
-</form>
 
+    <input class="form-control mr-sm-2 my-2 " style="width:400px" name="text" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+</form>
+</nav>
 
 <br/>
 <div style="height: 400px; overflow: auto" scrollable>

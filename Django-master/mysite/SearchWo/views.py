@@ -15,11 +15,10 @@ def SearchWo(request):
             P = Pegasus.objects.filter(ProjectId=searchvalue)
         else:
             P = Pegasus.objects.filter(SvcNo=searchvalue)
-        params = {'data' : P, 'value': searchvalue}
+        params = {'data' : P}
         return render(request,'SearchWo.html',params)
     else:
         #print(request.GET.get())
-        params = {'value': ''}
-        return render(request, 'SearchWo.html', params)
+        return render(request, 'SearchWo.html')
         #return render(request,'SearchWo.html')
 

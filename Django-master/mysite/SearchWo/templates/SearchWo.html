@@ -24,7 +24,7 @@
 <br/>
 <nav class="navbar navbar-light bg-light ">
 
-<form  class ="form-inline" method="post">{% csrf_token %}
+<form  name="action" value="Search" class ="form-inline" method="post">{% csrf_token %}
 
 <div class="custom-control custom-radio custom-control-inline">
   <input type="radio" id="customRadioInline1" checked="checked" value="ProjectId" name="Criteria" class="custom-control-input">
@@ -37,10 +37,12 @@
   <br>
 
     <input class="form-control mr-sm-2 my-2 " style="width:400px" name="text" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="Search" value="Search">Search</button>
     <div align="right">
-
+            <button type="submit" name='Search1 'class="btn btn-success mr-3"  value="Export">ExportToExcel</button>
+        </div>
 </form>
+
 </nav>
 
 <br/>

@@ -10,11 +10,15 @@
       box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
        -->
     }
+form-inline {
+    border-radius: 33px;
+}
 {% endblock %}
 
 
 {% block content %}
 
+<<<<<<< HEAD
 <form method="Post">{% csrf_token %}
 <div align="center">
 <h2>Search using Project Id/ Circuit ID</h2>
@@ -87,8 +91,72 @@
 
 
 </div>
+=======
+>>>>>>> 7af6fc5001b1738267bc00f645d0232672df908f
 
+<form method="Post">{% csrf_token %}
 
+    <div align="center">
+        <h2>Search using Project Id/ Circuit ID</h2>
+    </div>
+
+    <br/><br/>
+    <nav class="navbar navbar-light bg-light ">
+        <form  class ="form-inline" method="post">{% csrf_token %}
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline1" checked="checked"  value="ProjectId" name="Criteria" class="custom-control-input">
+              <label class="custom-control-label" for="customRadioInline1">Project ID</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline2" value="SvcNo" name="Criteria" class="custom-control-input">
+              <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
+            </div>
+            <br>
+            <input class="form-control mr-sm-2 my-2 " style="width:400px" name="text" type="search" placeholder='Search' aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+
+    <br/>
+
+    <div style="height: 400px; overflow: auto" scrollable>
+        <table class="table table-dark">
+            <thead>
+                <tr >
+                     <th> ProjectId</th>
+                     <th> WorkOrder</th>
+                     <th> WorkOrderStatus</th>
+                     <th> CircuitId</th>
+                     <th> CircuitStatus</th>
+                     <th> CRD</th>
+                     <th> Speed</th>
+                     <th> Updates</th>
+                     <th> Updates</th>
+                     <th> Updates</th>
+                     <th> Updates</th>
+                     <th> Updates</th>
+                     <th> Updates</th>
+                </tr>
+                </thead>
+                {% for item in data %}
+                <tr>
+                    <td>{{item.ProjectId}}</td>
+                    <td>{{item.WorkOrder}}</td>
+                    <td>{{item.WorkOrderStatus}}</td>
+                    <td>{{item.SvcNo}}</td>
+                    <td>{{item.SvcOrderStatus}}</td>
+                    <td>{{item.CRD}}</td>
+                    <td>{{item.Speed}}</td>
+                    <td>{{item.Updates}}</td>
+                    <td>{{item.Updates}}</td>
+                    <td>{{item.Updates}}</td>
+                    <td>{{item.Updates}}</td>
+                    <td>{{item.Updates}}</td>
+                    <td>{{item.Updates}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 </form>
 
 {% endblock %}

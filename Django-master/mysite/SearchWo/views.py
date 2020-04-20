@@ -10,6 +10,7 @@ def SearchWo(request):
     #params = Pegasus.objects.all()
 
     if request.method == 'POST':
+<<<<<<< HEAD
             Button_Criteria=request.POST.get('Search', 'Search1')
             if Button_Criteria=='Search':
                 searchcriteria = request.POST.get('Criteria', 'ProjectId')
@@ -57,7 +58,19 @@ def SearchWo(request):
 
                 return response
 
+=======
+        searchcriteria = request.POST.get('Criteria', 'ProjectId')
+        print(searchcriteria)
+        searchvalue = request.POST.get('text')
+        if searchcriteria == 'ProjectId':
+            P = Pegasus.objects.filter(ProjectId=searchvalue)
+        else:
+            P = Pegasus.objects.filter(SvcNo=searchvalue)
+        params = {'data' : P}
+        return render(request,'SearchWo.html',params)
+>>>>>>> 7af6fc5001b1738267bc00f645d0232672df908f
     else:
         #print(request.GET.get())
-        return render(request,'SearchWo.html')
+        return render(request, 'SearchWo.html')
+        #return render(request,'SearchWo.html')
 

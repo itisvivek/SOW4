@@ -5,14 +5,17 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Pegasus
 
+searchcriteria=''
+searchvalue=''
 
 def SearchWo(request):
     #params = Pegasus.objects.all()
-
+    global searchcriteria
+    global searchvalue
     if request.method == 'POST':
-<<<<<<< HEAD
             Button_Criteria=request.POST.get('Search', 'Search1')
             if Button_Criteria=='Search':
+
                 searchcriteria = request.POST.get('Criteria', 'ProjectId')
                 searchvalue = request.POST.get('text')
                 if searchcriteria == 'ProjectId':
@@ -27,6 +30,13 @@ def SearchWo(request):
                 from django.http import HttpResponse
                 from django.contrib.auth.models import User
 
+                print(searchcriteria)
+                print(searchvalue)
+                if searchcriteria == 'ProjectId':
+                    P = Pegasus.objects.filter(ProjectId=searchvalue)
+
+                else:
+                    P = Pegasus.objects.filter(SvcNo=searchvalue)
 
                 response = HttpResponse(content_type='application/ms-excel')
                 response['Content-Disposition'] = 'attachment; filename="users.xls"'
@@ -48,7 +58,7 @@ def SearchWo(request):
                 # Sheet body, remaining rows
                 font_style = xlwt.XFStyle()
 
-                rows = Pegasus.objects.all().values_list('ProjectId', 'SvcNo', 'SvcOrderStatus', 'WorkOrder','WorkOrderStatus','CRD','Speed','Updates')
+                rows = P.values_list('ProjectId', 'SvcNo', 'SvcOrderStatus', 'WorkOrder','WorkOrderStatus','CRD','Speed','Updates')
                 for row in rows:
                     row_num += 1
                     for col_num in range(len(row)):
@@ -58,19 +68,7 @@ def SearchWo(request):
 
                 return response
 
-=======
-        searchcriteria = request.POST.get('Criteria', 'ProjectId')
-        print(searchcriteria)
-        searchvalue = request.POST.get('text')
-        if searchcriteria == 'ProjectId':
-            P = Pegasus.objects.filter(ProjectId=searchvalue)
-        else:
-            P = Pegasus.objects.filter(SvcNo=searchvalue)
-        params = {'data' : P}
-        return render(request,'SearchWo.html',params)
->>>>>>> 7af6fc5001b1738267bc00f645d0232672df908f
     else:
         #print(request.GET.get())
-        return render(request, 'SearchWo.html')
-        #return render(request,'SearchWo.html')
+        return render(request,'SearchWo.html')
 

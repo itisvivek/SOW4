@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'SearchWo.apps.SearchwoConfig',
     'WorkOrderEscalation.apps.WorkorderescalationConfig',
     'OutlookEscalate.apps.OutlookescalateConfig',
-    'StatusTracker.apps.StatustrackerConfig'
+    'StatusTracker.apps.StatustrackerConfig',
+    'ProjectClosureApproval.apps.ProjectclosureapprovalConfig'
 ]
 
 MIDDLEWARE = [

@@ -25,5 +25,6 @@ urlpatterns = [
     path('Home/SearchWo', include('SearchWo.urls')),
     path('Home/WorkOrderEscalation', include('WorkOrderEscalation.urls')),
     path('Home/WorkOrderEscalation/OutlookEscalate', include('OutlookEscalate.urls')),
-    path('Home/ProjectStatusTracker', include('StatusTracker.urls'))
+    path('Home/ProjectStatusTracker', include('StatusTracker.urls')),
+    path('Home/ProjectClosureApproval', include('ProjectClosureApproval.urls'))
 ]

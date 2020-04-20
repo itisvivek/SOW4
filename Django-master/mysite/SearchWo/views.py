@@ -9,14 +9,17 @@ def SearchWo(request):
     #params = Pegasus.objects.all()
     if request.method == 'POST':
         searchcriteria = request.POST.get('Criteria', 'ProjectId')
+        print(searchcriteria)
         searchvalue = request.POST.get('text')
         if searchcriteria == 'ProjectId':
             P = Pegasus.objects.filter(ProjectId=searchvalue)
         else:
             P = Pegasus.objects.filter(SvcNo=searchvalue)
-        params = {'data' : P}
+        params = {'data' : P, 'value': searchvalue}
         return render(request,'SearchWo.html',params)
     else:
         #print(request.GET.get())
-        return render(request,'SearchWo.html')
+        params = {'value': ''}
+        return render(request, 'SearchWo.html', params)
+        #return render(request,'SearchWo.html')
 

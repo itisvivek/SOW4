@@ -5,11 +5,13 @@ from django.shortcuts import redirect
 from django.template.loader import get_template
 
 def WorkOrderEscalate(request):
-
+   dict_teams={}
    params=WorkOrderEscalation.objects.all()
    if request.method == 'POST':
       list_teams=request.POST.getlist('team')
-      return redirect('/Home/WorkOrderEscalation/OutlookEscalate',{'dict_teams':list_teams})
+      dict_teams['Teams']=list_teams
+      print(list_teams)
+      return render(request,"OutlookEsc.html",dict_teams)
    else:
       return render(request,"WorkOrderEscalation.html",{'params':params})
 

@@ -10,6 +10,6 @@ def ClosureApproval(request):
     if request.method == 'POST':
         list_teams = request.POST.getlist('team')
         dict_teams['Teams']=list_teams
-        return render(request,"OutlookEsc.html",dict_teams)
+        return render(request, "OutlookEsc.html", dict_teams)
     else:
-      return render(request,'ClosureApproval.html',{'params':params})
+      return render(request, 'ClosureApproval.html', {'params':params})

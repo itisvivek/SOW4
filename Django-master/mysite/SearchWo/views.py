@@ -25,7 +25,7 @@ def SearchWo(request):
                 params = {'data' : P}
                 return render(request,'SearchWo.html',params)
             else:
-
+                print(searchcriteria)
                 import xlwt
                 from django.http import HttpResponse
                 from django.contrib.auth.models import User

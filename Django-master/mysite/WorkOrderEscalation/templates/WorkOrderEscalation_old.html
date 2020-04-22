@@ -1,0 +1,64 @@
+{% extends 'Base.html' %}
+{% block css%}
+    th {
+      background: grey;
+      position: sticky;
+      top: 0;
+      <!--
+      background: black;
+      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+       -->
+    }
+{% endblock %}
+
+{% block content %}
+<html>
+<body>
+<form method="Post">{% csrf_token %}
+<div align="center">
+<h2>Work Order Escalation</h2>
+</div>
+
+<br>
+<br>
+
+<div align="right">
+<button id="Escalate" type="submit" name='Escalate_Button 'class="btn btn-success mr-3" disabled>Escalate</button>
+</div>
+<div style="height: 400px; overflow: auto" scrollable>
+<table class="table table-dark">
+
+        <tr>
+             <th> ProjectId</th>
+             <th> WorkOrder</th>
+             <th> CircuitId</th>
+             <th> CrdDate</th>
+             <th> Status</th>
+             <th> Assignee</th>
+             <th> AssignedTeam</th>
+             <th> Escalate</th>
+
+        </tr>
+        {% for item in params %}
+        <tr>
+            <td>{{item.ProjectId}}</td>
+            <td>{{item.WorkOrder}}</td>
+            <td>{{item.CircuitId}}</td>
+            <td>{{item.CrdDate}}</td>
+            <td>{{item.Status}}</td>
+            <td>{{item.Assignee}}</td>
+            <td>{{item.AssignedTeam}}</td>
+            <td><input type="checkbox"   name="team" value="{{item.AssignedTeam}}"  onchange="document.getElementById('Escalate').disabled = !this.checked;"/></td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+
+</div>
+
+
+</form>
+</body>
+</html>
+{% endblock %}

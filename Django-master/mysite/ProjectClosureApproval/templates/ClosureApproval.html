@@ -1,0 +1,107 @@
+{% extends 'Base.html' %}
+{% block css%}
+    th {
+      background: grey;
+      position: sticky;
+      top: 0;
+      <!--
+      background: black;
+      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+       -->
+    }
+{% endblock %}
+<br>
+{% block logout %}
+
+    <form method="POST">{% csrf_token %}
+        <div align="center">
+            <button class="btn-success nav-link navbar " value="submit" name="Logout">Logout</button>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block content %}
+<html>
+<body>
+<div align="right">
+    <script type="text/javascript">
+        function sendEmail(){
+                var a = document.getElementsByClassName('Email');
+
+                for(i =0; i< a.length; i++){
+                    temp =String(a[i].value)
+                    console.log((temp.split(',')[0]))
+
+                    if(a[i].checked == true)
+                    {   try{
+                                  var theApp = new ActiveXObject("Outlook.Application");
+                                  var objNS = theApp.GetNameSpace('MAPI');
+                                  var theMailItem = theApp.CreateItem(0); // value 0 = MailItem
+                                  theMailItem.to = (a[i].value);
+                                  theMailItem.Subject = (a[i].value);
+                                  theMailItem.Body = (a[i].value);
+                                  theMailItem.display();
+                              }
+                              catch (err) {
+                                 alert(err.message);
+                              }
+                    }
+                }
+        }
+    </script>
+
+<!--
+<form method="Post">{% csrf_token %}
+-->
+<div align="center">
+<h2>Project Closure Approval</h2>
+</div>
+
+<br>
+<br>
+
+<div align="right">
+    <button id="Escalate"  name='Escalate_Button 'class="btn btn-outline-success mb-2 mr-3"  onclick="sendEmail()" disabled >Escalate</button>
+<!--
+    <button id="generate" type="submit" name='Escalate_Button 'class="btn btn-outline-success mb-2 mr-3" disabled>Generate Template</button>
+-->
+</div>
+<div style="height: 400px; overflow: auto" scrollable>
+<table class="table table-dark">
+
+        <tr>
+             <th> ProjectId</th>
+             <th> WorkOrder</th>
+             <th> CircuitId</th>
+             <th> CrdDate</th>
+             <th> Status</th>
+             <th> Assignee</th>
+             <th> AssignedTeam</th>
+             <th> Escalate</th>
+
+        </tr>
+        {% for item in params %}
+        <tr>
+            <td>{{item.ProjectId}}</td>
+            <td>{{item.WorkOrder}}</td>
+            <td>{{item.CircuitId}}</td>
+            <td>{{item.CrdDate}}</td>
+            <td>{{item.Status}}</td>
+            <td>{{item.Assignee}}</td>
+            <td>{{item.AssignedTeam}}</td>
+            <td><input type="checkbox"  class = "Email" name="team" value="{{item.AssignedTeam}}"  onchange="document.getElementById('Escalate').disabled = !this.checked;"/></td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+
+</div>
+
+<!---
+</form>
+    -->
+</body>
+</html>
+{% endblock %}

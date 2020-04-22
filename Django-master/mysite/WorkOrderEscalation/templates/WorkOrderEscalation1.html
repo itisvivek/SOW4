@@ -1,0 +1,37 @@
+{% extends 'Base.html' %}
+{% load render_table from django_tables2 %}
+{% block content %}
+<h2>Work Order Escalation</h2>
+<div style="height: 400px; overflow: auto">
+  <table class="table table-dark" scrollable>
+  <thead>
+    <tr>
+      <th scope="col">Project ID</th>
+      <th scope="col">Work Order</th>
+      <th scope="col">Circuit ID</th>
+      <th scope="col">CRD Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">Assignee</th>
+      <th scope="col">Assigned Team</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for key, value in params.items %}
+    <p>{{ key }} : {{ value }}</p>
+    <tr>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>Otto</td>
+      <td><input type="checkbox" name="name1" />&nbsp;</td>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

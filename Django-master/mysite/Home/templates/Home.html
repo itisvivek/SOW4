@@ -1,0 +1,73 @@
+{% extends 'Base.html' %}
+<br>
+{% block logout %}
+
+    <form method="POST">{% csrf_token %}
+        <div align="center">
+            <button class="btn-success nav-link navbar " value="submit" name="Logout">Logout</button>
+        </div>
+    </form>
+
+{% endblock %}
+{#logout#}
+{% block content %}
+    {#  <h1 class="mt-4">Home Screen</h1>#}
+    {#  <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>#}
+    {#  <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>#}
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid mr-5 ml-3">
+            <h1 class="container-fluid my-4" align="middle"><B>My Dashboard</B></h1>
+
+{#            {% block content %}#}
+                <div class="shadow p-3 mb-5 bg-white rounded">
+                    <table style="border: 1px solid transparent" border="1" bordercolor="white" align="middle">
+                        <tr align="left">
+                            <th></th>
+                            <th>Total number of circuits</th>
+                            <th></th>
+                            <th></th>
+                            <th>Total number of circuits closed</th>
+                            <th></th>
+                        </tr>
+
+                        <td width="100" height="50"></td>
+                        <td align='middle' width="200" height="50">{{ count_ckts }}</td>
+                        <td width="200" height="50"></td>
+                        <td width="200" height="50"></td>
+                        <td align='middle' width="250" height="50">{{ count_ckts_closed }}</td>
+                        <td width="50" height="50"></td>
+                    </table>
+                </div>
+
+                <br>
+
+                {% if graph %}
+                    <div class="shadow p-3 mb-5 bg-white rounded">
+                        <table style="border: 1px solid transparent" border="1" bordercolor="white" align="middle">
+                            <tr align="middle">
+                                <th>Number of Projects</th>
+                                <th>Number of Work Orders</th>
+                            </tr>
+
+                            <td width="100" height="100">{{ graph|safe }}</td>
+                            <td width="100" height="100">{{ graph1|safe }}</td>
+
+                        </table>
+                    </div>
+
+                    {{ graph2|safe }}
+                {% else %}
+                    <p>No graph was provided.</p>
+                {% endif %}
+
+            {% endblock %}
+
+        </div>
+        <!--      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>-->
+        <!--      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>-->
+    </div>
+    <!-- /#page-content-wrapper -->
+
+
+{#{% endblock %}#}

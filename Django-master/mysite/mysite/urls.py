@@ -28,4 +28,5 @@ urlpatterns = [
     path('Home/ProjectStatusTracker', include('StatusTracker.urls')),
     path('Home/ProjectClosureApproval', include('ProjectClosureApproval.urls')),
     path('Home/BillingTracker', include('BillingStatusTracker.urls')),
+    path('Home/OpenCircuitManagement', include('OpenCircuitManagement.urls')),
 ]

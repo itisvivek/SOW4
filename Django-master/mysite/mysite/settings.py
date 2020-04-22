@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'StatusTracker.apps.StatustrackerConfig',
     'ProjectClosureApproval.apps.ProjectclosureapprovalConfig',
     'BillingStatusTracker',
+    'OpenCircuitManagement',
 ]
 
 MIDDLEWARE = [

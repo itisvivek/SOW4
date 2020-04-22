@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d21c15ae-b822-46d5-b536-6c12c4226662" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home/templates/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Home/templates/Base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home/templates/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Home/templates/Home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectClosureApproval/templates/ClosureApproval.html" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectClosureApproval/templates/ClosureApproval.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SearchWo/templates/SearchWo.html" beforeDir="false" afterPath="$PROJECT_DIR$/SearchWo/templates/SearchWo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StatusTracker/templates/StatusTracker.html" beforeDir="false" afterPath="$PROJECT_DIR$/StatusTracker/templates/StatusTracker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkOrderEscalation/templates/WorkOrderEscalation.html" beforeDir="false" afterPath="$PROJECT_DIR$/WorkOrderEscalation/templates/WorkOrderEscalation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +81,7 @@
       <updated>1587495144473</updated>
       <workItem from="1587495159166" duration="7301000" />
       <workItem from="1587538838132" duration="289000" />
+      <workItem from="1587539433979" duration="742000" />
     </task>
     <servers />
   </component>
@@ -82,6 +93,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="645" y="159" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1587539068989" />
+    <state x="294" y="76" key="MergeDialog" timestamp="1587540715820">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="294" y="76" key="MergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1587540715820" />
+    <state x="629" y="143" key="MultipleFileMergeDialog" timestamp="1587540715868">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="629" y="143" key="MultipleFileMergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1587540715868" />
     <state x="260" y="77" width="981" height="707" key="SettingsEditor" timestamp="1587539029451">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

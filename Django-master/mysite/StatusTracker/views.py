@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from SearchWo.models import Pegasus
 
 def StatusTracker(request):
+    username = request.user.get_username()
     if request.method=='POST':
         SubmitCriteria=request.POST.get('Search1')
         import xlwt
@@ -47,7 +48,7 @@ def StatusTracker(request):
 
     else:
         P = Pegasus.objects.all()
-        params = {'data': P}
+        params = {'data': P,'Username':username}
         return render(request,'StatusTracker.html',params)
 
 

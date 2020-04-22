@@ -23,6 +23,7 @@ def index(request):
 
 @login_required(login_url='/')
 def Home(request):
+    username = request.user.get_username()
     if request.method == 'POST':
         logout(request)
         return redirect('/')
@@ -114,10 +115,10 @@ def Home(request):
         graph1 = fig1.to_html(full_html=False, default_height=350, default_width=500)
 
         context = {'graph': graph, 'graph1': graph1, 'count_wo_closed': count_wo_closed, 'count_wo': count_wo,
-                   'count_ckts_closed': count_ckts_closed, 'count_ckts': count_ckts}  # , 'graph2': graph2}
+                   'count_ckts_closed': count_ckts_closed, 'count_ckts': count_ckts,'Username':username}  # , 'graph2': graph2}
         # response = render(request, 'graph.html', context)
         response = render(request, 'Home.html', context)
         # response = render(request, '../Home/templates/Home.html', context)
         return (response)
 
-        return render(request,'Home.html',{'data':data})
+

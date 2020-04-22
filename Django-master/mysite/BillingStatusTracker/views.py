@@ -37,7 +37,7 @@ def BillingTracker(request):
 
             # print(type(B))
 
-            params = {'data': B, 'username': username}
+            params = {'data': B, 'Username': username}
             # render(request, '')
             params['msg'] = ''
             return render(request, 'BillingTracker.html', params)
@@ -64,4 +64,4 @@ def BillingTracker(request):
     else:
         # params['msg']=''
         username = request.user.get_username()
-        return render(request, 'BillingTracker.html', {'msg':'', 'username': username})
+        return render(request, 'BillingTracker.html', {'msg':'', 'Username': username})

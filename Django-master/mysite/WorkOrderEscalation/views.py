@@ -1,17 +1,76 @@
 from django.shortcuts import render
-from django.http import *
-from .models import WorkOrderEscalation
+
+# Create your views here.
+from django.shortcuts import render
 from django.shortcuts import redirect
-from django.template.loader import get_template
+from SearchWo.models import Pegasus
+
+searchcriteria=''
+searchvalue=''
 
 def WorkOrderEscalate(request):
-   dict_teams={}
-   params=WorkOrderEscalation.objects.all()
-   if request.method == 'POST':
-      list_teams=request.POST.getlist('team')
-      dict_teams['Teams']=list_teams
-      print(list_teams)
-      return render(request,"OutlookEsc.html",dict_teams)
-   else:
-      return render(request,"WorkOrderEscalation.html",{'params':params})
+    #params = Pegasus.objects.all()
+    global searchcriteria
+    global searchvalue
+
+    if request.method == 'POST':
+            Button_Criteria=request.POST.get('Search', 'Search1')
+            print(Button_Criteria)
+            if Button_Criteria == 'Search':
+
+                searchcriteria = request.POST.get('Criteria', 'ProjectId')
+                searchvalue = request.POST.get('text')
+                if searchcriteria == 'ProjectId':
+                    P = Pegasus.objects.filter(ProjectId=searchvalue,WorkOrderStatus='OPEN')
+                else:
+                    P = Pegasus.objects.filter(SvcNo=searchvalue,WorkOrderStatus='OPEN')
+                params = {'data' : P}
+                return render(request,'WorkOrderEscalation.html',params)
+            else:
+                print('export')
+                import xlwt
+                from django.http import HttpResponse
+                from django.contrib.auth.models import User
+
+                print(searchcriteria)
+                print(searchvalue)
+                if searchcriteria == 'ProjectId':
+                    P = Pegasus.objects.filter(ProjectId=searchvalue)
+
+                else:
+                    P = Pegasus.objects.filter(SvcNo=searchvalue)
+
+                response = HttpResponse(content_type='application/ms-excel')
+                response['Content-Disposition'] = 'attachment; filename="users.xls"'
+
+                wb = xlwt.Workbook(encoding='utf-8')
+                ws = wb.add_sheet('Users Data')  # this will make a sheet named Users Data
+
+                # Sheet header, first row
+                row_num = 0
+
+                font_style = xlwt.XFStyle()
+                font_style.font.bold = True
+
+                columns = ['ProjectId', 'SvcNo', 'SvcOrderStatus', 'WorkOrder','WorkOrderStatus','CRD','Speed','Updates']
+
+                for col_num in range(len(columns)):
+                    ws.write(row_num, col_num, columns[col_num], font_style)  # at 0 row 0 column
+
+                # Sheet body, remaining rows
+                font_style = xlwt.XFStyle()
+
+                rows = P.values_list('ProjectId', 'SvcNo', 'SvcOrderStatus', 'WorkOrder','WorkOrderStatus','CRD','Speed','Updates')
+                for row in rows:
+                    row_num += 1
+                    for col_num in range(len(row)):
+                        ws.write(row_num, col_num, row[col_num], font_style)
+
+                wb.save(response)
+
+                return response
+
+    else:
+        #print(request.GET.get())
+        return render(request,'WorkOrderEscalation.html')
 

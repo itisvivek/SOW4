@@ -10,6 +10,7 @@ searchvalue=''
 
 def SearchWo(request):
     #params = Pegasus.objects.all()
+    username = request.user.get_username()
     global searchcriteria
     global searchvalue
     if request.method == 'POST':
@@ -22,7 +23,7 @@ def SearchWo(request):
                     P = Pegasus.objects.filter(ProjectId=searchvalue)
                 else:
                     P = Pegasus.objects.filter(SvcNo=searchvalue)
-                params = {'data' : P}
+                params = {'data' : P,'Username':username}
                 return render(request,'SearchWo.html',params)
             else:
                 print(searchcriteria)
@@ -70,5 +71,5 @@ def SearchWo(request):
 
     else:
         #print(request.GET.get())
-        return render(request,'SearchWo.html')
+        return render(request,'SearchWo.html',{'Username':username})
 

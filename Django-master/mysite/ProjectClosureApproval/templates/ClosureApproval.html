@@ -1,4 +1,5 @@
 {% extends 'Base.html' %}
+
 {% block css%}
     th {
       background: grey;
@@ -9,26 +10,43 @@
       box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
        -->
     }
+form-inline {
+    border-radius: 33px;
+}
 {% endblock %}
-<<<<<<< HEAD
-<br>
-{% block logout %}
 
-    <form method="POST">{% csrf_token %}
-        <div align="center">
-            <button class="btn-success nav-link navbar " value="submit" name="Logout">Logout</button>
-        </div>
-    </form>
-
-{% endblock %}
-=======
->>>>>>> e4df2fb56ecc22987233ae096d88c4548e67ffdc
 
 {% block content %}
-<html>
-<body>
+
+
+<div align="center">
+<h2>Project Closure Approval</h2>
+</div>
+
+<br/>
+<br/>
+<nav class="navbar navbar-light bg-light ">
+
+<form  name="action" class ="form-inline" method="post">{% csrf_token %}
+
+    <div class="custom-control custom-radio custom-control-inline">
+      <input type="radio" id="customRadioInline1" checked="checked" value="ProjectId" name="Criteria" class="custom-control-input">
+      <label class="custom-control-label" for="customRadioInline1">Project ID</label>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline">
+      <input type="radio" id="customRadioInline2" value="SvcNo" name="Criteria" class="custom-control-input">
+      <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
+    </div>
+
+    <input class="form-control mr-sm-2 my-2 " style="width:380px" name="text" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" id ="search" type="submit" name="Search" value="Search">Search</button>
+    <button type="submit" name='Search1 'class="btn btn-outline-success mx-3" onchange="document.getElementById('search').disabled = !this.click  value="Export">ExportToExcel</button>
+
+</form>
+
+
 <div align="right">
-    <script type="text/javascript">
+     <script type="text/javascript">
         function sendEmail(){
                 var a = document.getElementsByClassName('Email');
 
@@ -53,47 +71,39 @@
                 }
         }
     </script>
-
-<!--
-<form method="Post">{% csrf_token %}
--->
-<div align="center">
-<h2>Project Closure Approval</h2>
+    <button id="Escalate"  name='Escalate_Button 'class="btn btn-outline-success"  onclick="sendEmail()" disabled >Escalate</button>
 </div>
+</nav>
 
-<br>
-<br>
+<br/>
 
-<div align="right">
-    <button id="Escalate"  name='Escalate_Button 'class="btn btn-outline-success mb-2 mr-3"  onclick="sendEmail()" disabled >Escalate</button>
-<!--
-    <button id="generate" type="submit" name='Escalate_Button 'class="btn btn-outline-success mb-2 mr-3" disabled>Generate Template</button>
--->
-</div>
 <div style="height: 400px; overflow: auto" scrollable>
 <table class="table table-dark">
-
-        <tr>
+    <thead>
+        <tr >
              <th> ProjectId</th>
              <th> WorkOrder</th>
+             <th> WorkOrderStatus</th>
              <th> CircuitId</th>
-             <th> CrdDate</th>
-             <th> Status</th>
-             <th> Assignee</th>
-             <th> AssignedTeam</th>
-             <th> Escalate</th>
-
+             <th> CircuitStatus</th>
+             <th> CRD</th>
+             <th> Speed</th>
+             <th> Updates</th>
+             <th> Escalate </th>
         </tr>
-        {% for item in params %}
+        </thead>
+        {% for item in data %}
         <tr>
             <td>{{item.ProjectId}}</td>
             <td>{{item.WorkOrder}}</td>
-            <td>{{item.CircuitId}}</td>
-            <td>{{item.CrdDate}}</td>
-            <td>{{item.Status}}</td>
-            <td>{{item.Assignee}}</td>
-            <td>{{item.AssignedTeam}}</td>
-            <td><input type="checkbox"  class = "Email" name="team" value="{{item.AssignedTeam}}"  onchange="document.getElementById('Escalate').disabled = !this.checked;"/></td>
+            <td>{{item.WorkOrderStatus}}</td>
+            <td>{{item.SvcNo}}</td>
+            <td>{{item.SvcOrderStatus}}</td>
+            <td>{{item.CRD}}</td>
+            <td>{{item.Speed}}</td>
+            <td>{{item.Updates}}</td>
+            <td><input type="checkbox"  class = "Email" name="team" value="{{item.CircuitId}}"  onchange="document.getElementById('Escalate').disabled = !this.checked;"/></td>
+
         </tr>
     {% endfor %}
 </table>
@@ -102,9 +112,5 @@
 
 </div>
 
-<!---
-</form>
-    -->
-</body>
-</html>
+
 {% endblock %}

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d21c15ae-b822-46d5-b536-6c12c4226662" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Home/templates/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Home/templates/Base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Home/templates/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Home/templates/Home.html" afterDir="false" />
@@ -10,7 +11,7 @@
       <change beforePath="$PROJECT_DIR$/ProjectClosureApproval/templates/ClosureApproval.html" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectClosureApproval/templates/ClosureApproval.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SearchWo/templates/SearchWo.html" beforeDir="false" afterPath="$PROJECT_DIR$/SearchWo/templates/SearchWo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StatusTracker/templates/StatusTracker.html" beforeDir="false" afterPath="$PROJECT_DIR$/StatusTracker/templates/StatusTracker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkOrderEscalation/templates/WorkOrderEscalation.html" beforeDir="false" afterPath="$PROJECT_DIR$/WorkOrderEscalation/templates/WorkOrderEscalation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/urls.py" afterDir="false" />
     </list>
@@ -81,18 +82,38 @@
       <updated>1587495144473</updated>
       <workItem from="1587495159166" duration="7301000" />
       <workItem from="1587538838132" duration="289000" />
-      <workItem from="1587539433979" duration="742000" />
+      <workItem from="1587539433979" duration="1846000" />
     </task>
+    <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/itisvivek/SOW4&#10;&#10;# Conflicts:&#10;#&#9;Django-master/.idea/vcs.xml&#10;#&#9;Django-master/mysite/Home/models.py&#10;#&#9;Django-master/mysite/Home/templates/Base.html&#10;#&#9;Django-master/mysite/Home/templates/Home.html&#10;#&#9;Django-master/mysite/Home/views.py&#10;#&#9;Django-master/mysite/ProjectClosureApproval/templates/ClosureApproval.html&#10;#&#9;Django-master/mysite/SearchWo/templates/SearchWo.html&#10;#&#9;Django-master/mysite/StatusTracker/templates/StatusTracker.html&#10;#&#9;Django-master/mysite/WorkOrderEscalation/templates/WorkOrderEscalation.html&#10;#&#9;Django-master/mysite/db.sqlite3&#10;#&#9;Django-master/mysite/mysite/settings.py&#10;#&#9;Django-master/mysite/mysite/urls.py">
+      <created>1587540780672</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587540780672</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Merge branch 'master' of https://github.com/itisvivek/SOW4&#10;&#10;Add new entries">
+      <created>1587540874161</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1587540874161</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge branch 'master' of https://github.com/itisvivek/SOW4&#10;&#10;# Conflicts:&#10;#&#9;Django-master/.idea/vcs.xml&#10;#&#9;Django-master/mysite/Home/models.py&#10;#&#9;Django-master/mysite/Home/templates/Base.html&#10;#&#9;Django-master/mysite/Home/templates/Home.html&#10;#&#9;Django-master/mysite/Home/views.py&#10;#&#9;Django-master/mysite/ProjectClosureApproval/templates/ClosureApproval.html&#10;#&#9;Django-master/mysite/SearchWo/templates/SearchWo.html&#10;#&#9;Django-master/mysite/StatusTracker/templates/StatusTracker.html&#10;#&#9;Django-master/mysite/WorkOrderEscalation/templates/WorkOrderEscalation.html&#10;#&#9;Django-master/mysite/db.sqlite3&#10;#&#9;Django-master/mysite/mysite/settings.py&#10;#&#9;Django-master/mysite/mysite/urls.py" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/itisvivek/SOW4&#10;&#10;Add new entries" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/itisvivek/SOW4&#10;&#10;Add new entries" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="444" y="0" key="CommitChangelistDialog2" timestamp="1587540778078">
+    <state x="444" y="0" key="CommitChangelistDialog2" timestamp="1587540944918">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="444" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1587540778078" />
+    <state x="444" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1587540944918" />
     <state x="645" y="159" key="FileChooserDialogImpl" timestamp="1587539068989">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

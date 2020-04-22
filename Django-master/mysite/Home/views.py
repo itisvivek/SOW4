@@ -3,6 +3,7 @@ from django.http import *
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+
 from . import models
 from Home.models import Pol
 import sqlite3
@@ -116,3 +117,5 @@ def Home(request):
         response = render(request, 'Home.html', context)
         # response = render(request, '../Home/templates/Home.html', context)
         return (response)
+
+        return render(request,'Home.html',{'data':data})

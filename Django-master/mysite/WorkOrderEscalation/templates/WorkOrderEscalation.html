@@ -48,7 +48,7 @@ form-inline {
 
     <input class="form-control mr-sm-2 my-2 " style="width:380px" name="text" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" id ="search" type="submit" name="Search" value="Search">Search</button>
-    <button type="submit" name='Search1 'class="btn btn-outline-success mx-3" onchange="document.getElementById('search').disabled = !this.click  value="Export">ExportToExcel</button>
+    <button type="submit" name='Search1 'class="btn btn-outline-success mx-3" onchange="document.getElementById('search').disabled = !this.click"  value="Export">ExportToExcel</button>
 
 </form>
 
@@ -67,9 +67,9 @@ form-inline {
                                   var theApp = new ActiveXObject("Outlook.Application");
                                   var objNS = theApp.GetNameSpace('MAPI');
                                   var theMailItem = theApp.CreateItem(0); // value 0 = MailItem
-                                  theMailItem.to = (a[i].value);
-                                  theMailItem.Subject = (a[i].value);
-                                  theMailItem.Body = (a[i].value);
+                                  theMailItem.to = ("user@infosys.com");
+                                  theMailItem.Subject = ("Work  Order Escalation");
+                                  theMailItem.Body = ("Record details :" +  a[i].value);
                                   theMailItem.display();
                               }
                               catch (err) {
@@ -110,8 +110,9 @@ form-inline {
             <td>{{item.CRD}}</td>
             <td>{{item.Speed}}</td>
             <td>{{item.Updates}}</td>
-            <td><input type="checkbox"  class = "Email" name="team" value="{{item.CircuitId}}"  onchange="document.getElementById('Escalate').disabled = !this.checked;"/></td>
-
+            <td><input type="checkbox"  class = "Email" name="team"
+                       value="{{item.ProjectId}},{{item.WorkOrder}},{{item.WorkOrderStatus}},{{item.SvcNo}},{{item.SvcOrderStatus}},{{item.CRD}},{{item.Speed}},{{item.Updates}}"
+                       onchange="document.getElementById('Escalate').disabled = !this.checked;"/></td>
         </tr>
     {% endfor %}
 </table>

@@ -30,7 +30,6 @@
     <html>
     <body>
 
-
     {% if msg != '' %}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             {{ msg }}
@@ -40,7 +39,7 @@
         </div>
     {% endif %}
 
-    <div class="alert alert-secondary" role="alert">
+    <div class="alert alert-secondary py-0" role="alert">
         <marquee>Note: Only closed circuits will be displayed on this page</marquee>
     </div>
 
@@ -62,15 +61,11 @@
     {#        <input type="submit" class="btn btn-success" name='Search' value="Search">#}
     {#        <br>#}
     {#    </form>#}
-    <br/>
-    <br/>
+
     <form method="Post">{% csrf_token %}
         <div align="center">
-            <h2>Search using Project Id/ Circuit ID</h2>
+            <h2>Billing Tracker</h2>
         </div>
-        <br/>
-        <br/>
-
 
         <nav class="navbar navbar-light bg-light ">
 
@@ -81,7 +76,7 @@
                 {#  <label class="custom-control-label" for="customRadioInline1">Project ID</label>#}
                 {#</div>#}
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline2" value="SvcNo" name="Criteria"
+                    <input type="radio"      id="customRadioInline2" value="SvcNo" name="Criteria"
                            class="custom-control-input">
                     <label class="custom-control-label" for="customRadioInline2">Search using Circuit ID</label>
                 </div>

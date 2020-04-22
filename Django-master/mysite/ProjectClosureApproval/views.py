@@ -21,14 +21,26 @@ def ClosureApproval(request):
                 return redirect('/')
             Button_Criteria=request.POST.get('Search', 'Search1')
             if Button_Criteria=='Search':
-
+                res=1
                 searchcriteria = request.POST.get('Criteria', 'ProjectId')
                 searchvalue = request.POST.get('text')
                 if searchcriteria == 'ProjectId':
-                    P = Pegasus.objects.filter(ProjectId=searchvalue,WorkOrderStatus='CLOSED')
+                    res = Pegasus.objects.filter(ProjectId=searchvalue,WorkOrderStatus='OPEN').count()
+                    if res == 0:
+                        P = Pegasus.objects.filter(ProjectId=searchvalue)
+                        params = {'data': P, 'Username': username, 'res': res}
+                    else:
+                        params = {'Username': username, 'res': res}
+
                 else:
-                    P = Pegasus.objects.filter(SvcNo=searchvalue,WorkOrderStatus='CLOSED')
-                params = {'data' : P,'Username':username}
+                    res = Pegasus.objects.filter(SvcNo=searchvalue, WorkOrderStatus='OPEN').count()
+                    if res == 0:
+                        P = Pegasus.objects.filter(SvcNo=searchvalue,WorkOrderStatus='CLOSED')
+                        params = {'data': P, 'Username': username, 'res': res}
+                    else:
+                        params = {'Username': username, 'res': res}
+
+
                 return render(request,'ClosureApproval.html',params)
             else:
                 print(searchcriteria)
@@ -76,5 +88,5 @@ def ClosureApproval(request):
 
     else:
         #print(request.GET.get())
-        return render(request,'ClosureApproval.html',{'Username':username})
+        return render(request,'ClosureApproval.html',{'Username':username, 'res': 0})
 

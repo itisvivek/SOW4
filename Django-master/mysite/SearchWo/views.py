@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Pegasus
+from django.contrib.auth import authenticate, login, logout
+
 
 searchcriteria=''
 searchvalue=''
@@ -14,6 +16,9 @@ def SearchWo(request):
     global searchcriteria
     global searchvalue
     if request.method == 'POST':
+            if request.POST.get('Logout'):
+                logout(request)
+                return redirect('/')
             Button_Criteria=request.POST.get('Search', 'Search1')
             if Button_Criteria=='Search':
 

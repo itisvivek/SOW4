@@ -4,12 +4,15 @@ import sys
 # Creaste your views here.
 from django.shortcuts import render
 from django.shortcuts import redirect
-
+from django.contrib.auth import authenticate, login, logout
 from SearchWo.models import Pegasus
 
 def StatusTracker(request):
     username = request.user.get_username()
     if request.method=='POST':
+        if request.POST.get('Logout'):
+            logout(request)
+            return redirect('/')
         SubmitCriteria=request.POST.get('Search1')
         import xlwt
         from django.http import HttpResponse

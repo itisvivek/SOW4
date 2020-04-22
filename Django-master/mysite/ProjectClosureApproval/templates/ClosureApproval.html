@@ -13,9 +13,19 @@
 form-inline {
     border-radius: 33px;
 }
+
+
 {% endblock %}
 
+{% block logout %}
 
+    <form method="POST">{% csrf_token %}
+        <div align="center">
+            <button class="btn-success nav-link navbar " value="submit" name="Logout">Logout</button>
+        </div>
+    </form>
+
+{% endblock %}
 {% block content %}
 
 

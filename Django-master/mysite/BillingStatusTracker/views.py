@@ -8,6 +8,7 @@ from SearchWo.models import Pegasus
 from Login.models import Mydb
 import django.contrib.auth
 from BillingStatusTracker.models import Billing
+from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
 
 
@@ -20,6 +21,10 @@ def BillingTracker(request):
     global params, searchvalue
 
     if request.method == 'POST':
+        if request.method == 'POST':
+            if request.POST.get('Logout'):
+                logout(request)
+                return redirect('/')
         Button_Criteria = request.POST.get('Search', 'Bill_Button')
         if Button_Criteria == 'Search':
 

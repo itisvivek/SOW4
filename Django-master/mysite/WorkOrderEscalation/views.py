@@ -4,16 +4,23 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.shortcuts import redirect
 from SearchWo.models import Pegasus
+from django.contrib.auth import authenticate, login, logout
 
 searchcriteria=''
 searchvalue=''
 
 def WorkOrderEscalate(request):
     #params = Pegasus.objects.all()
+    username = request.user.get_username()
+
     global searchcriteria
     global searchvalue
 
     if request.method == 'POST':
+        if request.method == 'POST':
+            if request.POST.get('Logout'):
+                logout(request)
+                return redirect('/')
             Button_Criteria=request.POST.get('Search', 'Search1')
             print(Button_Criteria)
             if Button_Criteria == 'Search':
@@ -24,7 +31,7 @@ def WorkOrderEscalate(request):
                     P = Pegasus.objects.filter(ProjectId=searchvalue,WorkOrderStatus='OPEN')
                 else:
                     P = Pegasus.objects.filter(SvcNo=searchvalue,WorkOrderStatus='OPEN')
-                params = {'data' : P}
+                params = {'data' : P,'Username':username}
                 return render(request,'WorkOrderEscalation.html',params)
             else:
                 print('export')
@@ -72,5 +79,5 @@ def WorkOrderEscalate(request):
 
     else:
         #print(request.GET.get())
-        return render(request,'WorkOrderEscalation.html')
+        return render(request,'WorkOrderEscalation.html',{'Username':username})
 

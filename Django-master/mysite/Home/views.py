@@ -13,6 +13,7 @@ import datetime
 import numpy as np
 import plotly.express as px
 import plotly.graph_objs as go
+import os
 from plotly.subplots import make_subplots
 
 
@@ -38,8 +39,9 @@ def Home(request):
         #     'charttype': charttype,
         #     'chartdata': chartdata,}
         # return render(request,'Home.html',{'data':data})
-
-        con = sqlite3.connect("F:\Python Projects\Django projects\SOW4-master\Django-master\mysite\db.sqlite3")
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        a=os.path.join(BASE_DIR, 'db.sqlite3')
+        con = sqlite3.connect(a)
         cur = con.cursor()
         df = pd.read_sql_query("SELECT * from POL", con)
         df1 = pd.read_sql_query("SELECT * from SearchWo_pegasus", con)
@@ -52,16 +54,16 @@ def Home(request):
         esd = df.groupby('ProjectStatus', as_index=False).agg({"ProjectID": "count"})
         print('Columns: ', esd.columns)
         Tasks = []
-        Tasks = esd['ProjectID'].to_list()
-        my_labels = esd['ProjectStatus'].to_list()
+        Tasks = esd['ProjectID'].values.tolist()
+        my_labels = esd['ProjectStatus'].values.tolist()
 
         # df1 = pd.read_excel(xls, 'Pegasus table')
 
         wodf1 = df1[['WorkOrder', 'WorkOrderStatus']]
         wodf1 = wodf1.drop_duplicates(subset=None, keep='first', inplace=False)
         wo = wodf1.groupby('WorkOrderStatus', as_index=False).agg({"WorkOrder": "count"})
-        wo_tasks = wo['WorkOrder'].to_list()
-        wo_labels = wo['WorkOrderStatus'].to_list()
+        wo_tasks = wo['WorkOrder'].values.tolist()
+        wo_labels = wo['WorkOrderStatus'].values.tolist()
 
         c_df = df1[['SvcNo', 'SvcOrderStatus']]
         c_df = c_df.drop_duplicates(subset=None, keep='first', inplace=False)

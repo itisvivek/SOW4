@@ -51,7 +51,9 @@ def BillingTracker(request):
             # bt = Billing.objects.all()
             print(Billing.objects.filter(svcno=searchvalue).count())
             if Billing.objects.filter(svcno=searchvalue).count()==0:
-                params['msg'] = "Success !!"
+                params['msg'] = "Bill generated successfully !!"
+                params['style'] = "alert-success"
+
                 for ins in B:
                     # print(ins.id)
                     # Billing.objects.create()  # , Billed_status="Billed", Billed_by=username,Billed_date=datetime)
@@ -63,6 +65,7 @@ def BillingTracker(request):
                                    updates=ins.Updates, Billed_status="Billed", Billed_by=username, Billed_date=datetime.now())
                     bill.save()
             else:
+                params['style'] = "alert-warning"
                 params['msg'] = "Already billed, you cannot billed on the same circuit ID again!"
             return render(request, 'BillingTracker.html', params)
 

@@ -1,31 +1,5 @@
 {% extends 'Base.html' %}
 
-{% block css%}
-    th {
-      background: grey;
-      position: sticky;
-      top: 0;
-      <!--
-      background: black;
-      box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-       -->
-    }
-form-inline {
-    border-radius: 33px;
-}
-
-
-{% endblock %}
-
-{% block logout %}
-
-    <form method="POST">{% csrf_token %}
-        <div align="center">
-            <button class="btn-success nav-link navbar " value="submit" name="Logout">Logout</button>
-        </div>
-    </form>
-
-{% endblock %}
 {% block content %}
 
 
@@ -42,8 +16,6 @@ form-inline {
         </div>
     {% endif %}
 
-<br/>
-<br/>
 <nav class="navbar navbar-light bg-light ">
 
 <form  name="action" class ="form-inline" method="post">{% csrf_token %}
@@ -98,28 +70,28 @@ form-inline {
 <br/>
 
     <div style="height: 400px; overflow: auto" scrollable>
-        <table class="table table-dark">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr >
                      <th> ProjectId</th>
-                     <th> WorkOrder</th>
-                     <th> WorkOrderStatus</th>
                      <th> CircuitId</th>
                      <th> CircuitStatus</th>
                      <th> CRD</th>
+                     <th> WorkOrder</th>
+                     <th> WorkOrderStatus</th>
                      <th> Speed</th>
                      <th> Updates</th>
-                     <th> Escalate </th>
+                     <th>Email</th>
                 </tr>
                 </thead>
                 {% for item in data %}
                 <tr>
                     <td>{{item.ProjectId}}</td>
-                    <td>{{item.WorkOrder}}</td>
-                    <td>{{item.WorkOrderStatus}}</td>
                     <td>{{item.SvcNo}}</td>
                     <td>{{item.SvcOrderStatus}}</td>
                     <td>{{item.CRD}}</td>
+                    <td>{{item.WorkOrder}}</td>
+                    <td>{{item.WorkOrderStatus}}</td>
                     <td>{{item.Speed}}</td>
                     <td>{{item.Updates}}</td>
                     <td><input type="checkbox"  class = "Email" name="team"

@@ -1,0 +1,86 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+    <div align="center">
+        <h2>Open Circuit Management</h2>
+    </div>
+
+    <nav class="navbar navbar-light bg-light ">
+        <form name="action" class="form-inline" method="post">{% csrf_token %}
+
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" checked="checked" value="ProjectId" name="Criteria"
+                       class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">Project ID</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" value="SvcNo" name="Criteria" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
+            </div>
+
+            <input class="form-control mr-sm-2 my-2 " style="width:380px" name="text" type="search" placeholder="Search"
+                   aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" id="search"
+                    onclick="document.getElementById('search').enabled = true" type="submit" name="Search"
+                    value="Search">Search
+            </button>
+            <button type="submit" id="search1" name='Search1 ' class="btn btn-outline-success mx-3" value="Export">
+                ExportToExcel
+            </button>
+
+        </form>
+
+
+        <form method="get">
+            <div align="right">
+                <button type="submit" id='com' name='Comments ' class="btn btn-outline-success" value="UpdateComments"
+                        disabled>Update Comments
+                </button>
+            </div>
+
+
+        </form>
+
+    </nav>
+
+
+    <br/>
+    <div style="height: 400px; overflow: auto" scrollable>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th> ProjectId</th>
+                <th> CircuitId</th>
+                <th> CircuitStatus</th>
+                <th> CRD</th>
+                <th> WorkOrder</th>
+                <th> WorkOrderStatus</th>
+                <th> Speed</th>
+                <th> Updates</th>
+                <th> Comments</th>
+            </tr>
+            </thead>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.ProjectId }}</td>
+                    <td>{{ item.SvcNo }}</td>
+                    <td>{{ item.SvcOrderStatus }}</td>
+                    <td>{{ item.CRD }}</td>
+                    <td>{{ item.WorkOrder }}</td>
+                    <td>{{ item.WorkOrderStatus }}</td>
+                    <td>{{ item.Speed }}</td>
+                    <td>{{ item.Updates }}</td>
+                    <td><textarea id="AreaCom" class="Com" rows="4" cols="50" maxlength="500" name="area"
+                                  placeholder="Enter your comments here"></textarea></td>
+                    <td><input type="checkbox" class="Updates" name="team" value="{{ item.CircuitId }}"
+                               onchange="document.getElementById('com').disabled = !this.checked;"/></td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+
+    </div>
+
+
+{% endblock %}

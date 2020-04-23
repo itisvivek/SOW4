@@ -1,12 +1,13 @@
+from datetime import datetime
+
 from django.contrib.auth import logout
 from django.shortcuts import render
-
 # Create your views here.
 from django import forms
 from django.shortcuts import render
 import sys
 # sys.path.append("..")
-# Creaste your views here.
+# Create your views here.
 from django.shortcuts import render
 from django.shortcuts import redirect
 
@@ -14,9 +15,23 @@ from django.shortcuts import redirect
 #from BillingStatusTracker.views import username
 from SearchWo.models import Pegasus
 
+new_dict={}
+texta=''
+O=Pegasus.objects.none()
+a=''
+list_result=[]
+c=''
+params={}
 
 def OpenCircuits(request):
     username = request.user.get_username()
+    global texta
+    global O
+    global a
+    global new_dict
+    global list_result
+    global c
+    global params
     if request.POST.get('Logout'):
         logout(request)
         return redirect('/')
@@ -24,13 +39,10 @@ def OpenCircuits(request):
     print(request.GET)
     #username = request.user.get_username()
     if request.method == 'POST':
-        print(request.POST)
-        print(request.GET)
         SubmitCriteria = request.POST.get('Search', 'Search1')
         print("Inside first if_post method")
         # if(Updatebut == 'Sub'):
         #     print(request.POST.get('area'))
-
         if SubmitCriteria == "Search":
             searchcriteria = request.POST.get('Criteria', 'ProjectId')
             searchvalue = request.POST.get('text')
@@ -42,38 +54,41 @@ def OpenCircuits(request):
                 O = Pegasus.objects.filter(SvcNo=searchvalue, SvcOrderStatus='OPEN',
                                            WorkOrderStatus='OPEN').distinct()
 
-            # global username
-            print("Inside second if_after clicking on search")
+            print('ID of current line: ',O.values('id'))
+            result = O.values('id')  # return ValuesQuerySet object
 
-            if request.GET.get('team'):
-                print(request.POST.get('area'))
-                print("Hey...........")
+            list_result = [entry for entry in result]  # converts ValuesQuerySet into Python list
 
-            if SubmitComments == 'UpdateComments':
-                print("Hi...")
-                UpdateValueArea = request.GET.get("area")
-                area_act = UpdateValueArea
-                # UpdateValueTeam=request.POST.get("team")
-                print("Area: ", area_act)
-                print("UpdateValueArea: ", UpdateValueArea)
-                # print("UpdateValueTeam: ", UpdateValueTeam)
-            else:
-                print("Hi....hey")
+            print('Value of list_result: ',list_result)
+            print('Value of count of list_result inside POST: ', len(list_result))
+            myDict = {}
+            for Dict in list_result:
+                for key in Dict:
+                    new_dict[key] = Dict[key]
+            from collections import ChainMap
+            myDict = dict(ChainMap(*list_result))
+            # print(new_dict)
+            old_dict = dict((key,d[key]) for d in list_result for key in d)
+            adict = {k: v for elem in list_result for (k, v) in elem.items()}
+            print('Value of adict inside POST: ',adict)
+            print('Value of old_dict inside POST: ',old_dict)
+            print('Value of new_dict inside POST: ', new_dict)
+            print('Value of myDict inside POST: ', myDict)
 
+            print('Value of GET inside POST: ', request.GET)
+            print('Value of POST inside POST: ', request.POST)
+
+            a = O.filter(ProjectId=searchvalue)
+            print('Value of a in POST: ', a)
+            print('Value of texta inside POST: ', texta)
             # UpdateValue=forms.CharField(widget=forms.Textarea(), required=False) #forms.Textarea()
             params = {'data': O, 'Username': username}
-            # render(request, '')
-            # params['msg'] = ''
-
-            # return render(request, 'OpenCircuitManagement.html', {'msg': 'Hey!!'})
             return render(request, 'OpenCircuitManagement.html', params)
 
-        # else:
         if SubmitCriteria == 'Search1':
             import xlwt
             from django.http import HttpResponse
             from django.contrib.auth.models import User
-            # elif SubmitCriteria == "Search1":
             response = HttpResponse(content_type='application/ms-excel')
             response['Content-Disposition'] = 'attachment; filename="List of open work orders.xls"'
 
@@ -96,7 +111,7 @@ def OpenCircuits(request):
             font_style = xlwt.XFStyle()
 
             rows = Pegasus.objects.all().values_list('ProjectId', 'SvcNo', 'SvcOrderStatus', 'WorkOrder',
-                                                     'WorkOrderStatus',
+                                                        'WorkOrderStatus',
                                                      'CRD', 'Speed', 'Updates')
             for row in rows:
                 row_num += 1
@@ -108,21 +123,30 @@ def OpenCircuits(request):
             return response
 
     else:
-        P = Pegasus.objects.all()
-        params = {'data': P, 'Username': username}
-    return render(request, 'OpenCircuitManagement.html',{'Username': username})
 
-    # djtext = request.GET.get('text','default')
-    # print(djtext)
-    # removepunc = request.GET.get('removepunc', 'off')
-    # if removepunc == "on":
-    #     punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
-    #     analyzed = ""
-    #     for char in djtext:
-    #         if char not in punctuations:
-    #             analyzed = analyzed + char
-    #
-    #     params = {'purpose': 'Removed Punctuations', 'analyzed_text': analyzed}
-    #     return render(request, 'OpenCircuitManagement.html', params)
-    # else:
-    #     return render(request,'OpenCircuitManagement.html')
+        print('Value of GET inside GET: ', request.GET)
+        # print('Value of POST inside GET: ', request.POST)
+        area_req=dict(request.GET)
+        print('Value of area_req from request.GET: ', area_req)
+        print('type(area_req): ', type(area_req))
+        print('area_req[area]: ', area_req.get('area'))
+
+
+        print("Value of list_result inside GET: ", list_result)
+        for ren in range(len(list_result)):
+            print('Value of list_result: ', list_result[ren])
+            my_dict={}
+            my_dict=list_result[ren]
+            print('Value of area_req[area]: ', area_req['area'][ren])
+            textb=area_req['area'][ren]
+            # now = datetime.now()
+            dt = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+            textb= str(dt) + " : " + textb
+            c = O.filter(id=my_dict.get("id"))
+            c.update(Updates=textb)
+            # c.save()
+            params = {'data': c, 'Username': username}
+
+        context=params
+
+    return render(request, 'OpenCircuitManagement.html', context)

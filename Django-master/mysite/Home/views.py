@@ -3,7 +3,6 @@ from django.http import *
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-
 from . import models
 from Home.models import Pol
 import sqlite3
@@ -28,18 +27,7 @@ def Home(request):
         logout(request)
         return redirect('/')
     else:
-        # xdata = ["Apple", "Apricot", "Avocado", "Banana", "Boysenberries", "Blueberries", "Dates", "Grapefruit", "Kiwi",
-        #          "Lemon"]
-        # ydata = [52, 48, 160, 94, 75, 71, 490, 82, 46, 17]
-        #
-        # extra_serie = {"tooltip": {"y_start": "", "y_end": " cal"}}
-        # chartdata = {'x': xdata, 'y1': ydata, 'extra1': extra_serie}
-        # charttype = "pieChart"
 
-        # data = {
-        #     'charttype': charttype,
-        #     'chartdata': chartdata,}
-        # return render(request,'Home.html',{'data':data})
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         a=os.path.join(BASE_DIR, 'db.sqlite3')
         con = sqlite3.connect(a)
@@ -107,10 +95,11 @@ def Home(request):
 
         fig = px.pie(esd, values=Tasks, names=my_labels,
                      color_discrete_sequence=px.colors.sequential.Blugrn)  # diverging.Tropic)
-
+        fig.update_traces(hoverinfo='label+percent', textinfo='value')
         # fig.show()
 
         fig1 = px.pie(wo, values=wo_tasks, names=wo_labels, color_discrete_sequence=px.colors.sequential.Oryel)
+        fig1.update_traces(hoverinfo='label+percent', textinfo='value')
         graph = fig.to_html(full_html=False, default_height=350, default_width=500)
         graph1 = fig1.to_html(full_html=False, default_height=350, default_width=500)
 

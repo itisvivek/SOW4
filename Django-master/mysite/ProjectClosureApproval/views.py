@@ -89,4 +89,3 @@ def ClosureApproval(request):
     else:
         #print(request.GET.get())
         return render(request,'ClosureApproval.html',{'Username':username, 'res': 0})
-

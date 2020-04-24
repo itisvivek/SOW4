@@ -7,6 +7,15 @@
 <h2>Work Order Escalation</h2>
 </div>
 
+    {% if msg != '' %}
+        <div class="alert {{style}} alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+
 <nav class="navbar navbar-light bg-light ">
 
 <form  name="action" class ="form-inline" method="post">{% csrf_token %}
@@ -16,13 +25,13 @@
       <label class="custom-control-label" for="customRadioInline1">Project ID</label>
     </div>
     <div class="custom-control custom-radio custom-control-inline">
-      <input type="radio" id="customRadioInline2" value="SvcNo" name="Criteria" class="custom-control-input">
+      <input type="radio" id="customRadioInline2" value="CircuitId" name="Criteria" class="custom-control-input">
       <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
     </div>
 
     <input class="form-control mr-sm-2 my-2 " style="width:380px" name="text" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" id ="search" type="submit" name="Search" value="Search">Search</button>
-    <button type="submit" name='Search1 'class="btn btn-outline-success mx-3" onchange="document.getElementById('search').disabled = !this.click"  value="Export">ExportToExcel</button>
+    <button type="submit" name='Export' class="btn btn-outline-success mx-3" onchange="document.getElementById('search').disabled = !this.click"  value="Export">ExportToExcel</button>
 
 </form>
 
@@ -38,13 +47,8 @@
 
                     if(a[i].checked == true)
                     {   try{
-                                  var theApp = new ActiveXObject("Outlook.Application");
-                                  var objNS = theApp.GetNameSpace('MAPI');
-                                  var theMailItem = theApp.CreateItem(0); // value 0 = MailItem
-                                  theMailItem.to = ("user@infosys.com");
-                                  theMailItem.Subject = ("Work  Order Escalation");
-                                  theMailItem.Body = ("Record details :" +  a[i].value);
-                                  theMailItem.display();
+                             x=window.open("mailto:em@il?subject=Work Order Escalation&body=Hi Team,%0D%0A%0D%0ACircuit will be escalated: " + temp + "%0D%0A%0D%0ARegards,%0D%0AGurdaan ");
+
                               }
                               catch (err) {
                                  alert(err.message);

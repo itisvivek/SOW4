@@ -34,17 +34,27 @@ def BillingTracker(request):
             if searchcriteria != 'ProjectId':
                 B = Pegasus.objects.filter(ProjectId=searchvalue, SvcOrderStatus='CLOSED',
                                            WorkOrderStatus='CLOSED').distinct()
+                C= Pegasus.objects.filter(ProjectId=searchvalue).count()
             else:
                 B = Pegasus.objects.filter(SvcNo=searchvalue, SvcOrderStatus='CLOSED', WorkOrderStatus='CLOSED').distinct()
-
+                C = Pegasus.objects.filter(SvcNo=searchvalue).count()
             global username
+
+
+            if C == 0:
+                params['style'] = "alert-danger"
+                params['msg'] = "Circuit " + searchvalue + " not found"
+            elif B.count() == 0:
+                params['style'] = "alert-info"
+                params['msg'] = "Circuit " + searchvalue + " is not closed"
+            else:
+                params['msg'] = ''
+
             username = request.user.get_username()
-
-            # print(type(B))
-
-            params = {'data': B, 'Username': username}
+            params['data']=B
+            params['Username']= username
             # render(request, '')
-            params['msg'] = ''
+
             return render(request, 'BillingTracker.html', params)
         else:
             print("Alert!!!!")

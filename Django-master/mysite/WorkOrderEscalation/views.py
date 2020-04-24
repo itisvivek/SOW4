@@ -6,46 +6,59 @@ from django.shortcuts import redirect
 from SearchWo.models import Pegasus
 from django.contrib.auth import authenticate, login, logout
 
-searchcriteria=''
-searchvalue=''
-
+P=''
+params={}
 def WorkOrderEscalate(request):
     #params = Pegasus.objects.all()
     username = request.user.get_username()
 
-    global searchcriteria
-    global searchvalue
+    global searchcriteria, searchvalue, params, P
 
     if request.method == 'POST':
         if request.method == 'POST':
             if request.POST.get('Logout'):
                 logout(request)
                 return redirect('/')
-            Button_Criteria=request.POST.get('Search', 'Search1')
-            print(Button_Criteria)
+
+            Button_Criteria=request.POST.get('Search', 'Export')
+            # print(Button_Criteria)
             if Button_Criteria == 'Search':
 
                 searchcriteria = request.POST.get('Criteria', 'ProjectId')
                 searchvalue = request.POST.get('text')
+
                 if searchcriteria == 'ProjectId':
                     P = Pegasus.objects.filter(ProjectId=searchvalue,WorkOrderStatus='OPEN')
+                    C = Pegasus.objects.filter(ProjectId=searchvalue).count()
                 else:
                     P = Pegasus.objects.filter(SvcNo=searchvalue,WorkOrderStatus='OPEN')
-                params = {'data' : P,'Username':username}
+                    C = Pegasus.objects.filter(SvcNo=searchvalue).count()
+
+                if C == 0:
+                    params['style'] = "alert-danger"
+                    params['msg'] = searchcriteria + " " + searchvalue + " not found"
+                elif P.count() == 0:
+                    params['style'] = "alert-info"
+                    params['msg'] = searchcriteria + " " + searchvalue + " is not Open"
+                else:
+                    params['msg'] = ''
+
+                username = request.user.get_username()
+                params['data'] = P
+                params['Username'] = username
                 return render(request,'WorkOrderEscalation.html',params)
             else:
-                print('export')
+                # print('export')
                 import xlwt
                 from django.http import HttpResponse
                 from django.contrib.auth.models import User
 
-                print(searchcriteria)
-                print(searchvalue)
-                if searchcriteria == 'ProjectId':
-                    P = Pegasus.objects.filter(ProjectId=searchvalue)
+                # if searchcriteria == 'ProjectId':
+                #     P = Pegasus.objects.filter(ProjectId=searchvalue,WorkOrderStatus='OPEN')
+                #
+                # else:
+                #     P = Pegasus.objects.filter(SvcNo=searchvalue,WorkOrderStatus='OPEN')
 
-                else:
-                    P = Pegasus.objects.filter(SvcNo=searchvalue)
 
                 response = HttpResponse(content_type='application/ms-excel')
                 response['Content-Disposition'] = 'attachment; filename="users.xls"'
@@ -79,5 +92,5 @@ def WorkOrderEscalate(request):
 
     else:
         #print(request.GET.get())
-        return render(request,'WorkOrderEscalation.html',{'Username':username})
+        return render(request,'WorkOrderEscalation.html',{'msg':'', 'Username':username})
 

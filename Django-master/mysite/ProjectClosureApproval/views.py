@@ -6,55 +6,70 @@ from django.shortcuts import redirect
 from SearchWo.models import Pegasus
 from django.contrib.auth import authenticate, login, logout
 
-searchcriteria=''
-searchvalue=''
-
+P=''
+params={}
 def ClosureApproval(request):
     #params = Pegasus.objects.all()
     username = request.user.get_username()
-    global searchcriteria
-    global searchvalue
+    global P, params
 
     if request.method == 'POST':
             if request.POST.get('Logout'):
                 logout(request)
                 return redirect('/')
-            Button_Criteria=request.POST.get('Search', 'Search1')
+            Button_Criteria=request.POST.get('Search', 'Export')
             if Button_Criteria=='Search':
                 res=1
                 searchcriteria = request.POST.get('Criteria', 'ProjectId')
                 searchvalue = request.POST.get('text')
+
                 if searchcriteria == 'ProjectId':
+                    P = Pegasus.objects.filter(ProjectId=searchvalue)
+                    C = P.count()
                     res = Pegasus.objects.filter(ProjectId=searchvalue,WorkOrderStatus='OPEN').count()
-                    if res == 0:
-                        P = Pegasus.objects.filter(ProjectId=searchvalue)
-                        params = {'data': P, 'Username': username, 'res': res}
-                    else:
-                        params = {'Username': username, 'res': res}
+                    # if res == 0:
+                    #     P = Pegasus.objects.filter(ProjectId=searchvalue)
+                    #     # params = {'data': P, 'Username': username, 'res': res}
+                    # else:
+                        # params = {'Username': username, 'res': res}
 
                 else:
+                    P= Pegasus.objects.filter(SvcNo=searchvalue)
+                    C = P.count()
                     res = Pegasus.objects.filter(SvcNo=searchvalue, WorkOrderStatus='OPEN').count()
-                    if res == 0:
-                        P = Pegasus.objects.filter(SvcNo=searchvalue,WorkOrderStatus='CLOSED')
-                        params = {'data': P, 'Username': username, 'res': res}
-                    else:
-                        params = {'Username': username, 'res': res}
+                    # if res == 0:
+                    #     P = Pegasus.objects.filter(SvcNo=searchvalue)
+                    #     # params = {'data': P, 'Username': username, 'res': res}
+                    # else:
+                        # params = {'Username': username, 'res': res}
 
+                if C == 0:
+                    params['style'] = "alert-danger"
+                    params['msg'] = searchcriteria+ " " + searchvalue + " not found"
+                    P=''
+                elif res != 0:
+                    params['style'] = "alert-info"
+                    params['msg'] = searchcriteria + "  " + searchvalue + " is not closed"
+                    P=''
+                else:
+                    params['msg'] = ''
+
+                username = request.user.get_username()
+                params['data'] = P
+                params['Username'] = username
 
                 return render(request,'ClosureApproval.html',params)
             else:
-                print(searchcriteria)
+
                 import xlwt
                 from django.http import HttpResponse
                 from django.contrib.auth.models import User
 
-                print(searchcriteria)
-                print(searchvalue)
-                if searchcriteria == 'ProjectId':
-                    P = Pegasus.objects.filter(ProjectId=searchvalue)
-
-                else:
-                    P = Pegasus.objects.filter(SvcNo=searchvalue)
+                # if searchcriteria == 'ProjectId':
+                #     P = Pegasus.objects.filter(ProjectId=searchvalue)
+                #
+                # else:
+                #     P = Pegasus.objects.filter(SvcNo=searchvalue)
 
                 response = HttpResponse(content_type='application/ms-excel')
                 response['Content-Disposition'] = 'attachment; filename="users.xls"'
@@ -88,4 +103,4 @@ def ClosureApproval(request):
 
     else:
         #print(request.GET.get())
-        return render(request,'ClosureApproval.html',{'Username':username, 'res': 0})
+        return render(request,'ClosureApproval.html',{'Username':username, 'msg': ''})

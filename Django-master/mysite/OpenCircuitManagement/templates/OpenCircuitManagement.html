@@ -5,6 +5,15 @@
         <h2>Open Circuit Management</h2>
     </div>
 
+    {% if msg != '' %}
+    <div class="alert {{style}} alert-dismissible fade show" role="alert">
+        {{ msg }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+
     <nav class="navbar navbar-light bg-light ">
         <form name="action" class="form-inline" method="post">{% csrf_token %}
 
@@ -14,7 +23,7 @@
                 <label class="custom-control-label" for="customRadioInline1">Project ID</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline2" value="SvcNo" name="Criteria" class="custom-control-input">
+                <input type="radio" id="customRadioInline2" value="CircuitId" name="Criteria" class="custom-control-input">
                 <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
             </div>
 
@@ -24,7 +33,7 @@
                     onclick="document.getElementById('search').enabled = true" type="submit" name="Search"
                     value="Search">Search
             </button>
-            <button type="submit" id="search1" name='Search1 ' class="btn btn-outline-success mx-3" value="Export">
+            <button type="submit" id="Export" name='Export' class="btn btn-outline-success mx-3" value="Export">
                 ExportToExcel
             </button>
 

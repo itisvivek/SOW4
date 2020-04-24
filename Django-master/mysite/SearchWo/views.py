@@ -7,18 +7,18 @@ from .models import Pegasus
 from django.contrib.auth import authenticate, login, logout
 
 
-searchcriteria=''
-searchvalue=''
+P=''
+params={}
 
 def SearchWo(request):
     #params = Pegasus.objects.all()
     username = request.user.get_username()
-    global searchcriteria
-    global searchvalue
+    global P, params
     if request.method == 'POST':
             if request.POST.get('Logout'):
                 logout(request)
                 return redirect('/')
+
             Button_Criteria=request.POST.get('Search', 'Search1')
             if Button_Criteria=='Search':
 
@@ -28,21 +28,34 @@ def SearchWo(request):
                     P = Pegasus.objects.filter(ProjectId=searchvalue)
                 else:
                     P = Pegasus.objects.filter(SvcNo=searchvalue)
-                params = {'data' : P,'Username':username}
+                C = P.count()
+
+                if C == 0:
+                    params['style'] = "alert-danger"
+                    params['msg'] = searchcriteria + " " + searchvalue + " not found"
+                    P = ''
+                else:
+                    params['msg'] = ''
+
+                username = request.user.get_username()
+                params['data'] = P
+                params['Username'] = username
+
+                # params = {'data' : P,'Username':username}
                 return render(request,'SearchWo.html',params)
             else:
-                print(searchcriteria)
+                # print(searchcriteria)
                 import xlwt
                 from django.http import HttpResponse
                 from django.contrib.auth.models import User
 
-                print(searchcriteria)
-                print(searchvalue)
-                if searchcriteria == 'ProjectId':
-                    P = Pegasus.objects.filter(ProjectId=searchvalue)
-
-                else:
-                    P = Pegasus.objects.filter(SvcNo=searchvalue)
+                # print(searchcriteria)
+                # print(searchvalue)
+                # if searchcriteria == 'ProjectId':
+                #     P = Pegasus.objects.filter(ProjectId=searchvalue)
+                #
+                # else:
+                #     P = Pegasus.objects.filter(SvcNo=searchvalue)
 
                 response = HttpResponse(content_type='application/ms-excel')
                 response['Content-Disposition'] = 'attachment; filename="users.xls"'
@@ -76,5 +89,5 @@ def SearchWo(request):
 
     else:
         #print(request.GET.get())
-        return render(request,'SearchWo.html',{'Username':username})
+        return render(request,'SearchWo.html',{'Username':username, 'msg': ''})
 

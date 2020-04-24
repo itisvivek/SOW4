@@ -158,6 +158,9 @@ def OpenCircuits(request):
         print('25: type(area_req): ', type(area_req))
         print('26: area_req[area]: ', area_req.get('area'))
 
+        if area_req.get('area') == None:
+            return render(request, 'OpenCircuitManagement.html', {'Username': username})
+
         print("27: Value of list_result inside GET: ", list_result)
         print("28: Value of list_upd inside GET: ", list_upd)
 
@@ -181,10 +184,9 @@ def OpenCircuits(request):
             params = {'data': c, 'Username': username}
 
         context = params
-    return render(request, 'OpenCircuitManagement.html', context)
-    # else:
-    #
-    #     return render(request, 'OpenCircuitManagement.html', {'Username': username})
+        return render(request, 'OpenCircuitManagement.html', context)
+    else:
+        return render(request, 'OpenCircuitManagement.html', {'Username': username})
 
 #
 # texta = request.GET.get('area')

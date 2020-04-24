@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d21c15ae-b822-46d5-b536-6c12c4226662" name="Default Changelist" comment="Merge branch 'master' of https://github.com/itisvivek/SOW4&#10;&#10;Latest updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Login/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenCircuitManagement/templates/OpenCircuitManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCircuitManagement/templates/OpenCircuitManagement.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OpenCircuitManagement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCircuitManagement/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -88,7 +86,7 @@
       <workItem from="1587538838132" duration="289000" />
       <workItem from="1587539433979" duration="2723000" />
       <workItem from="1587616902100" duration="7490000" />
-      <workItem from="1587646831925" duration="29861000" />
+      <workItem from="1587646831925" duration="31649000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/itisvivek/SOW4&#10;&#10;# Conflicts:&#10;#&#9;Django-master/.idea/vcs.xml&#10;#&#9;Django-master/mysite/Home/models.py&#10;#&#9;Django-master/mysite/Home/templates/Base.html&#10;#&#9;Django-master/mysite/Home/templates/Home.html&#10;#&#9;Django-master/mysite/Home/views.py&#10;#&#9;Django-master/mysite/ProjectClosureApproval/templates/ClosureApproval.html&#10;#&#9;Django-master/mysite/SearchWo/templates/SearchWo.html&#10;#&#9;Django-master/mysite/StatusTracker/templates/StatusTracker.html&#10;#&#9;Django-master/mysite/WorkOrderEscalation/templates/WorkOrderEscalation.html&#10;#&#9;Django-master/mysite/db.sqlite3&#10;#&#9;Django-master/mysite/mysite/settings.py&#10;#&#9;Django-master/mysite/mysite/urls.py">
       <created>1587540780672</created>

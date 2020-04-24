@@ -12,16 +12,18 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 # Create your views here.
-#from BillingStatusTracker.views import username
+# from BillingStatusTracker.views import username
 from SearchWo.models import Pegasus
 
-new_dict={}
-texta=''
-O=Pegasus.objects.none()
-a=''
-list_result=[]
-c=''
-params={}
+new_dict = {}
+texta = ''
+O = Pegasus.objects.none()
+a = ''
+list_result = []
+c = ''
+params = {}
+list_upd = []
+
 
 def OpenCircuits(request):
     username = request.user.get_username()
@@ -32,15 +34,16 @@ def OpenCircuits(request):
     global list_result
     global c
     global params
+    global list_upd
     if request.POST.get('Logout'):
         logout(request)
         return redirect('/')
 
-    print(request.GET)
-    #username = request.user.get_username()
+    print("1: Value of request.GET initially: ", request.GET)
+    # username = request.user.get_username()
     if request.method == 'POST':
         SubmitCriteria = request.POST.get('Search', 'Search1')
-        print("Inside first if_post method")
+        print("2: Inside first if_post method")
         # if(Updatebut == 'Sub'):
         #     print(request.POST.get('area'))
         if SubmitCriteria == "Search":
@@ -54,13 +57,37 @@ def OpenCircuits(request):
                 O = Pegasus.objects.filter(SvcNo=searchvalue, SvcOrderStatus='OPEN',
                                            WorkOrderStatus='OPEN').distinct()
 
-            print('ID of current line: ',O.values('id'))
+            print('3: ID of current line: ', O.values('id'))
             result = O.values('id')  # return ValuesQuerySet object
 
             list_result = [entry for entry in result]  # converts ValuesQuerySet into Python list
 
-            print('Value of list_result: ',list_result)
-            print('Value of count of list_result inside POST: ', len(list_result))
+            upd = O.values('Updates')
+            print("4: Updated value of Updates : ", upd)
+            print("5: type(upd) : ", type(upd))
+
+            list_upd = [upd_entry for upd_entry in upd]
+            print("6: Updated list of value of Updates : ", list_upd)
+            print("7: type(upd) : ", type(list_upd))
+            print("8: Count of elements in list_upd: ", len(list_upd))
+
+            res = [sub['Updates'] for sub in list_upd]
+
+            print("9: Value of res in POST: ", res)
+            print("10: Count of res in POST: ", len(res))
+
+
+            if len(res) == 0 or res[0] == '':
+                print("11: List is empty")
+                res = '-----'
+                list_upd = res
+            else:
+                print('12: List contains some elements')
+                list_upd = res
+
+
+            print('13: Value of list_result: ', list_result)
+            print('14: Value of count of list_result inside POST: ', len(list_result))
             myDict = {}
             for Dict in list_result:
                 for key in Dict:
@@ -68,19 +95,19 @@ def OpenCircuits(request):
             from collections import ChainMap
             myDict = dict(ChainMap(*list_result))
             # print(new_dict)
-            old_dict = dict((key,d[key]) for d in list_result for key in d)
+            old_dict = dict((key, d[key]) for d in list_result for key in d)
             adict = {k: v for elem in list_result for (k, v) in elem.items()}
-            print('Value of adict inside POST: ',adict)
-            print('Value of old_dict inside POST: ',old_dict)
-            print('Value of new_dict inside POST: ', new_dict)
-            print('Value of myDict inside POST: ', myDict)
+            print('15: Value of adict inside POST: ', adict)
+            print('16: Value of old_dict inside POST: ', old_dict)
+            print('17: Value of new_dict inside POST: ', new_dict)
+            print('18: Value of myDict inside POST: ', myDict)
 
-            print('Value of GET inside POST: ', request.GET)
-            print('Value of POST inside POST: ', request.POST)
+            print('19: Value of GET inside POST: ', request.GET)
+            print('20: Value of POST inside POST: ', request.POST)
 
             a = O.filter(ProjectId=searchvalue)
-            print('Value of a in POST: ', a)
-            print('Value of texta inside POST: ', texta)
+            print('21: Value of a in POST: ', a)
+            print('22: Value of texta inside POST: ', texta)
             # UpdateValue=forms.CharField(widget=forms.Textarea(), required=False) #forms.Textarea()
             params = {'data': O, 'Username': username}
             return render(request, 'OpenCircuitManagement.html', params)
@@ -111,7 +138,7 @@ def OpenCircuits(request):
             font_style = xlwt.XFStyle()
 
             rows = Pegasus.objects.all().values_list('ProjectId', 'SvcNo', 'SvcOrderStatus', 'WorkOrder',
-                                                        'WorkOrderStatus',
+                                                     'WorkOrderStatus',
                                                      'CRD', 'Speed', 'Updates')
             for row in rows:
                 row_num += 1
@@ -122,31 +149,58 @@ def OpenCircuits(request):
 
             return response
 
-    else:
+    elif request.method == 'GET':
 
-        print('Value of GET inside GET: ', request.GET)
+        print('23: Value of GET inside GET: ', request.GET)
         # print('Value of POST inside GET: ', request.POST)
-        area_req=dict(request.GET)
-        print('Value of area_req from request.GET: ', area_req)
-        print('type(area_req): ', type(area_req))
-        print('area_req[area]: ', area_req.get('area'))
+        area_req = dict(request.GET)
+        print('24: Value of area_req from request.GET: ', area_req)
+        print('25: type(area_req): ', type(area_req))
+        print('26: area_req[area]: ', area_req.get('area'))
 
+        print("27: Value of list_result inside GET: ", list_result)
+        print("28: Value of list_upd inside GET: ", list_upd)
 
-        print("Value of list_result inside GET: ", list_result)
         for ren in range(len(list_result)):
-            print('Value of list_result: ', list_result[ren])
-            my_dict={}
-            my_dict=list_result[ren]
-            print('Value of area_req[area]: ', area_req['area'][ren])
-            textb=area_req['area'][ren]
+            print('29: Value of list_result: ', list_result[ren])
+            my_dict = {}
+            my_dict = list_result[ren]
+            print('30: Value of area_req[area]: ', area_req['area'][ren])
+            textb = area_req['area'][ren]
+            print('31: Value of list_upd[ren]: ', list_upd[ren])
+            old_text = list_upd[ren]
+            print("32: value of old_text: ", old_text)
+            print("33: type(old_text) : ", type(old_text))
             # now = datetime.now()
             dt = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-            textb= str(dt) + " : " + textb
+            textb =  str(dt) + " : " + textb + '\n ------------------------- \n' + str(old_text)
+            print("34: Value of textb or final comments are: ", textb)
             c = O.filter(id=my_dict.get("id"))
             c.update(Updates=textb)
             # c.save()
             params = {'data': c, 'Username': username}
 
-        context=params
-
+        context = params
     return render(request, 'OpenCircuitManagement.html', context)
+    # else:
+    #
+    #     return render(request, 'OpenCircuitManagement.html', {'Username': username})
+
+#
+# texta = request.GET.get('area')
+#         print('Value of texta inside GET: ', texta)
+#         print('Value of a inside GET is: ', a)
+#         print('Value of type(a): ', type(a))
+#         astr=str(a)
+#         print('Value of astr after converting a to str: ', astr)
+#         print('Value of type(astr): ', type(astr))
+#         alist = astr.split(',')
+#         print('Value of type(alist)): ', type(alist))
+#         print('Value of alist: ', alist)
+#         for j in range(len(alist)):
+#             print("alist[j]: ", alist[j])
+#
+#         print('Value of dict is new_dict inside GET: ', new_dict.get("id"))
+#         b=O.filter(id=new_dict.get("id"))
+#         b.update(Updates=texta)
+#         params = {'data': b, 'Username': username}

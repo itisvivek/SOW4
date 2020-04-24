@@ -45,6 +45,12 @@
 
 
     <br/>
+    <style>
+
+
+
+    </style>
+
     <div style="height: 400px; overflow: auto" scrollable>
         <table class="table table-bordered table-hover">
             <thead>
@@ -70,7 +76,7 @@
                     <td>{{ item.WorkOrder }}</td>
                     <td>{{ item.WorkOrderStatus }}</td>
                     <td>{{ item.Speed }}</td>
-                    <td>{{ item.Updates }}</td>
+                    <td width="70%" height="100px">{{ item.Updates }}</td>
                     <td><textarea id="AreaCom" class="Com" rows="4" cols="50" maxlength="500" name="area"
                                   placeholder="Enter your comments here"></textarea></td>
                     <td><input type="checkbox" class="Updates" name="team" value="{{ item.CircuitId }}"

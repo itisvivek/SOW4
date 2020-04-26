@@ -180,7 +180,7 @@ def OpenCircuits(request):
             # print("33: type(old_text) : ", type(old_text))
             # now = datetime.now()
             dt = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-            textb =  str(dt) + " : " + textb + '\n ------------------------- \n' + str(old_text)
+            textb =  str(dt) + " : " + textb + '\n' + '-------------------------'+ '\n' + str(old_text)
             # print("34: Value of textb or final comments are: ", textb)
             c = O.filter(id=my_dict.get("id"))
             c.update(Updates=textb)

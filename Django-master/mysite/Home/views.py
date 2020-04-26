@@ -100,6 +100,7 @@ def Home(request):
 
         fig1 = px.pie(wo, values=wo_tasks, names=wo_labels, color_discrete_sequence=px.colors.sequential.Oryel)
         fig1.update_traces(hoverinfo='label+percent', textinfo='value')
+
         graph = fig.to_html(full_html=False, default_height=350, default_width=500)
         graph1 = fig1.to_html(full_html=False, default_height=350, default_width=500)
 

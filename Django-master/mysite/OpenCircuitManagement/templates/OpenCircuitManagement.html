@@ -6,12 +6,12 @@
     </div>
 
     {% if msg != '' %}
-    <div class="alert {{style}} alert-dismissible fade show" role="alert">
-        {{ msg }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        <div class="alert {{ style }} alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     {% endif %}
 
     <nav class="navbar navbar-light bg-light ">
@@ -23,7 +23,8 @@
                 <label class="custom-control-label" for="customRadioInline1">Project ID</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline2" value="CircuitId" name="Criteria" class="custom-control-input">
+                <input type="radio" id="customRadioInline2" value="CircuitId" name="Criteria"
+                       class="custom-control-input">
                 <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
             </div>
 
@@ -48,14 +49,11 @@
             </div>
 
 
-
-
     </nav>
 
 
     <br/>
     <style>
-
 
 
     </style>
@@ -85,7 +83,7 @@
                     <td>{{ item.WorkOrder }}</td>
                     <td>{{ item.WorkOrderStatus }}</td>
                     <td>{{ item.Speed }}</td>
-                    <td width="70%" height="100px">{{ item.Updates }}</td>
+                    <td style="min-width:250px" height="200px">{{ item.Updates }}</td>
                     <td><textarea id="AreaCom" class="Com" rows="4" cols="50" maxlength="500" name="area"
                                   placeholder="Enter your comments here"></textarea></td>
                     <td><input type="checkbox" class="Updates" name="team" value="{{ item.CircuitId }}"
@@ -98,5 +96,5 @@
 
     </div>
 
-</form>
+    </form>
 {% endblock %}

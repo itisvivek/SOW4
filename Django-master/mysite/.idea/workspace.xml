@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d21c15ae-b822-46d5-b536-6c12c4226662" name="Default Changelist" comment="Merge branch 'master' of https://github.com/itisvivek/SOW4&#10;&#10;Latest updates">
+      <change afterPath="$PROJECT_DIR$/Home/templates/Base_latest_file.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home/templates/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Home/templates/Base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home/templates/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Home/templates/Home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenCircuitManagement/templates/OpenCircuitManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCircuitManagement/templates/OpenCircuitManagement.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OpenCircuitManagement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/OpenCircuitManagement/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -136,10 +141,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/itisvivek/SOW4&#10;&#10;Latest updates" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="444" y="0" key="CommitChangelistDialog2" timestamp="1587705470127">
+    <state x="444" y="0" key="CommitChangelistDialog2" timestamp="1587916602847">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="444" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1587705470127" />
+    <state x="444" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1587916602847" />
     <state x="645" y="159" key="FileChooserDialogImpl" timestamp="1587539068989">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -164,10 +169,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="562" y="241" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1587646858253" />
-    <state x="515" y="218" key="git4idea.merge.GitPullDialog" timestamp="1587640238270">
+    <state x="515" y="218" key="git4idea.merge.GitPullDialog" timestamp="1587914130792">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="515" y="218" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1587640238270" />
+    <state x="515" y="218" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1587914130792" />
     <state x="439" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1587652633087">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

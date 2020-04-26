@@ -10,8 +10,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SOW4 -testing</title>
-	<link rel="icon" type="image/png" href="{% static 'images/icons/dashboard.png' %}"/>
+    <title>SOW4 - Project Coordination Portal</title>
+    <link rel="icon" type="image/png" href="{% static 'images/icons/dashboard.png' %}"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -26,38 +26,40 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-			 <!-- Custom styles for this template -->
+    <!-- Custom styles for this template -->
     <!--<link href="https://getbootstrap.com/docs/4.4/examples/dashboard/dashboard.css" rel="stylesheet">-->
 
-			<style>
-			.sidebar-sticky {
-  position: relative;
-  top: 0;
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
-/* -----
-SVG Icons - svgicons.sparkk.fr
------ */
+    <style>
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: .5rem;
+            overflow-x: hidden;
+            overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        }
 
-.svg-icon {
-  width: 1em;
-  height: 1em;
-}
+        /* -----
+        SVG Icons - svgicons.sparkk.fr
+        ----- */
 
-.svg-icon path,
-.svg-icon polygon,
-.svg-icon rect {
-  fill: #4691f6;
-}
+        .svg-icon {
+            width: 1em;
+            height: 1em;
+        }
 
-.svg-icon circle {
-  stroke: #4691f6;
-  stroke-width: 1;
-}
-i {
+        .svg-icon path,
+        .svg-icon polygon,
+        .svg-icon rect {
+            fill: #4691f6;
+        }
+
+        .svg-icon circle {
+            stroke: #4691f6;
+            stroke-width: 1;
+        }
+
+        i {
             border: solid black;
             border-width: 0 3px 3px 0;
             display: inline-block;
@@ -68,16 +70,17 @@ i {
             transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
         }
+
         th {
-          background: lightblue;
-          position: sticky;
-          top: 0;
+            background: lightblue;
+            position: sticky;
+            top: 0;
 
         }
 
         {% block css%}
         {% endblock %}
-			</style>
+    </style>
 </head>
 <!--  <ul class="navbar justify-content-end"  style="list-style-type: none">
    <li class="nav-item">
@@ -91,85 +94,119 @@ i {
    -->
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-1 shadow justify-content-between ">
-  <a class="navbar-brand ml-2">E Square</a>
-  <form class="form-inline" method="POST">{% csrf_token %}
-	<a class=" navbar-brand text-capitalize text-lowercase font-italic d-flex justify-content-end p-0"> welcome {{ Username }} </a>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="submit" name="Logout">Logout</button>
-  </form>
-   <button type="button" class="btn btn-link d-md-none" data-toggle="collapse" data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/></svg></button>
+    <a class="navbar-brand ml-2">E Square</a>
+    <form class="form-inline" method="POST">{% csrf_token %}
+        <a class=" navbar-brand text-capitalize text-lowercase font-italic d-flex justify-content-end p-0">
+            welcome {{ Username }} </a>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="submit" name="Logout">Logout</button>
+    </form>
+    <button type="button" class="btn btn-link d-md-none" data-toggle="collapse" data-target="#bd-docs-nav"
+            aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img" focusable="false">
+            <title>Menu</title>
+            <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
+                  d="M4 7h22M4 15h22M4 23h22"/>
+        </svg>
+    </button>
 </nav>
 
 
-
 </nav>
 
-    <div class="container-fluid mt-5 ">
-      <div class="row">
-          <!-- Side bar
-        <div class="col-md-3 col-xl-2 bd-sidebar sidebar-sticky">
-          <nav class="bg-light border-right show bd-links list-group-flush " id="bd-docs-nav">
-		  class="col-md-2 d-none d-md-block bg-light sidebar"-->
-		<nav class="col-md-3 col-xl-2 md-2 bg-light border-right show bd-links list-group-flush " id="bd-docs-nav">
-		  <div class="sidebar-sticky " >
-		  <ul class="nav flex-column " >
-          <li class="nav-item">
-            <a class="nav-link active" href="/Home">
-              <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-              Dashboard <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Home/SearchWo">
-			<svg class="svg-icon" viewBox="0 0 19 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z"></path>
-						</svg>
-              Search Work Orders
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="collapse" href="#Tracker">
-            <a class="nav-link" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-              Reports
-            </a>
-			<div class="collapse" id="Tracker">
-                <ul class="nested nav " style="list-style-type: none">
-                    <li> <a class="nav-link" href="/Home/ProjectStatusTracker" >Project Status Tracker</a></li>
-                    <li> <a class="nav-link" href="/Home/ProjectClosureApproval" >Project Closure Approval</a></li>
-                    <li> <a class="nav-link" href="/Home/BillingTracker">Circuit Billing Tracker</a></li>
+<div class="container-fluid mt-5 ">
+    <div class="row">
+        <!-- Side bar
+      <div class="col-md-3 col-xl-2 bd-sidebar sidebar-sticky">
+        <nav class="bg-light border-right show bd-links list-group-flush " id="bd-docs-nav">
+        class="col-md-2 d-none d-md-block bg-light sidebar"-->
+        <nav class="col-md-3 col-xl-2 md-2 bg-light border-right show bd-links list-group-flush " id="bd-docs-nav">
+            <div class="sidebar-sticky ">
+                <ul class="nav flex-column ">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/Home">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 class="feather feather-home">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/SearchWo">
+                            <svg class="svg-icon" viewBox="0 0 19 19" fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z"></path>
+                            </svg>
+                            Search Work Orders
+                        </a>
+                    </li>
+                    <li class="nav-item" data-toggle="collapse" href="#Tracker">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-bar-chart-2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            Reports
+                        </a>
+                        <div class="collapse" id="Tracker">
+                            <ul class="nested nav " style="list-style-type: none">
+                                <li><a class="nav-link" href="/Home/ProjectStatusTracker">Project Status Tracker</a>
+                                </li>
+                                <li><a class="nav-link" href="/Home/ProjectClosureApproval">Project Closure Approval</a>
+                                </li>
+                                <li><a class="nav-link" href="/Home/BillingTracker">Circuit Billing Tracker</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/WorkOrderEscalation">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-users">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            Work Order Escalation
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/OpenCircuitManagement">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-layers">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                                <polyline points="2 12 12 17 22 12"></polyline>
+                            </svg>
+                            Open Circuit Management
+                        </a>
+                    </li>
                 </ul>
+
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Home/WorkOrderEscalation">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-              Work Order Escalation
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/Home/OpenCircuitManagement">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-              Open Circuit Management
-            </a>
-          </li>
-        </ul>
-
-           </div>
-		 </nav>
+        </nav>
 
         <!--side bar ends-->
 
         <!--content-->
         <main class="col-md-9  col-xl-10  py-md-3 pl-md-5 bd-content" role="main">
-                <div class="container-fluid">
+            <div class="container-fluid">
                 {% block content %}
                 {% endblock %}
             </div>
 
         </main>
         <!--content ends-->
-      </div>
     </div>
+</div>
 
 </body>
 

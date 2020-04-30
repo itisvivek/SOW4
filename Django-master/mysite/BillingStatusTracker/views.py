@@ -10,13 +10,14 @@ import django.contrib.auth
 from BillingStatusTracker.models import Billing
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
-
+from django.contrib.auth.decorators import login_required
 
 B=''
 username=''
 params={}
 searchvalue=''
 
+@login_required(login_url='/')
 def BillingTracker(request):
     global params, searchvalue
 

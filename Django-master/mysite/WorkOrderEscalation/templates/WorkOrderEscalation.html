@@ -3,9 +3,9 @@
 {% block content %}
 
 
-<div align="center">
-<h2>Work Order Escalation</h2>
-</div>
+    <div align="center">
+    <h2>Work Order Escalation</h2>
+    </div>
 
     {% if msg != '' %}
         <div class="alert {{style}} alert-dismissible fade show" role="alert">
@@ -16,88 +16,150 @@
         </div>
     {% endif %}
 
-<nav class="navbar navbar-light bg-light ">
+    <nav class="navbar navbar-light bg-light ">
 
-<form  name="action" class ="form-inline" method="post">{% csrf_token %}
+        <form  name="action" class ="form-inline" method="post">{% csrf_token %}
 
-    <div class="custom-control custom-radio custom-control-inline">
-      <input type="radio" id="customRadioInline1" checked="checked" value="ProjectId" name="Criteria" class="custom-control-input">
-      <label class="custom-control-label" for="customRadioInline1">Project ID</label>
-    </div>
-    <div class="custom-control custom-radio custom-control-inline">
-      <input type="radio" id="customRadioInline2" value="CircuitId" name="Criteria" class="custom-control-input">
-      <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
-    </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline1" checked="checked" value="ProjectId" name="Criteria" class="custom-control-input">
+              <label class="custom-control-label" for="customRadioInline1">Project ID</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline2" value="CircuitId" name="Criteria" class="custom-control-input">
+              <label class="custom-control-label" for="customRadioInline2">Circuit ID</label>
+            </div>
 
-    <input class="form-control mr-sm-2 my-2 " style="width:380px" name="text" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" id ="search" type="submit" name="Search" value="Search">Search</button>
-    <button type="submit" name='Export' class="btn btn-outline-success mx-3" onchange="document.getElementById('search').disabled = !this.click"  value="Export">ExportToExcel</button>
+            <input class="form-control mr-sm-2 my-2 " style="width:380px" name="text" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" id ="search" type="submit" name="Search" value="Search">Search</button>
+            <button type="submit" name='Export' class="btn btn-outline-success mx-3" onchange="document.getElementById('search').disabled = !this.click"  value="Export">ExportToExcel</button>
 
-</form>
+        </form>
 
 
-<div align="right">
-     <script type="text/javascript">
-        function sendEmail(){
-                var a = document.getElementsByClassName('Email');
+        <div align="right">
+             <script type="text/javascript">
+                function sendEmail(){
+                        var a = document.getElementsByClassName('Email');
 
-                for(i =0; i< a.length; i++){
-                    temp =String(a[i].value)
-                    console.log((temp.split(',')[0]))
+                        for(i =0; i< a.length; i++){
+                            temp =String(a[i].value)
+                            console.log((temp.split(',')[0]))
 
-                    if(a[i].checked == true)
-                    {   try{
-                             x=window.open("mailto:em@il?subject=Work Order Escalation&body=Hi Team,%0D%0A%0D%0ACircuit will be escalated: " + temp + "%0D%0A%0D%0ARegards,%0D%0AGurdaan ");
+                            if(a[i].checked == true)
+                            {   try{
+                                     x=window.open("mailto:em@il?subject=Work Order Escalation&body=Hi Team,%0D%0A%0D%0ABeow workorder will be escalated:%0D%0A%0D%0A" + temp + "%0D%0A%0D%0ARegards,%0D%0AGurdaan ");
 
-                              }
-                              catch (err) {
-                                 alert(err.message);
-                              }
-                    }
+                                      }
+                                      catch (err) {
+                                         alert(err.message);
+                                      }
+                            }
+                        }
                 }
-        }
+            </script>
+               <!-- Button trigger modal
+                onclick="sendEmail()" -->
+
+            <button id="Escalate"  name='Escalate_Button 'class="Escalate btn btn-outline-success"   disabled >Escalate</button>
+            <a data-toggle="modal" data-id="hello" data-title="Add this item" class="Escalate btn btn-primary" href="#EmailModal" >test</a>
+
+        </div>
+    </nav>
+
+    <br/>
+
+    <div style="height: 400px; overflow: auto" scrollable>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                     <th class="align-middle text-center"> Project Id</th>
+                     <th class="align-middle text-center"> Service Ref</th>
+                     <th class="align-middle text-center"> Service Status</th>
+                     <th class="align-middle text-center"> Customer Received Date</th>
+                     <th class="align-middle text-center"> Work Order</th>
+                     <th class="align-middle text-center"> Work Order Status</th>
+                     <th class="align-middle text-center"> Speed</th>
+                     <th class="align-middle text-center"> Order type</th>
+                     <th class="align-middle text-center"> Task</th>
+                     <th class="align-middle text-center"> Next Escalation Level</th>
+                     <th class="align-middle text-center"> Next Escalation Date</th>
+                     <th class="align-middle text-center"> Escalation History</th>
+                     <th class="align-middle text-center"> Updates</th>
+                     <th class="align-middle text-center"> Escalate </th>
+                </tr>
+            </thead>
+            {% for item in data %}
+            <tr>
+                <td class="align-middle text-center">{{item.ProjectId}}</td>
+                <td class="align-middle text-center">{{item.SvcNo}}</td>
+                <td class="align-middle text-center">{{item.SvcOrderStatus}}</td>
+                <td class="align-middle text-center" style="min-width:125px">{{item.CRD}}</td>
+                <td class="align-middle text-center">{{item.WorkOrder}}</td>
+                <td class="align-middle text-center">{{item.WorkOrderStatus}}</td>
+                <td class="align-middle text-center">{{item.Speed}}</td>
+                <td class="align-middle text-center">{{item.order_type}}</td>
+                <td class="align-middle text-center"style="min-width:125px">{{item.task_name}}</td>
+                <td class="align-middle text-center">{{item.next_escalation_level}}</td>
+                <td class="align-middle text-center">{{item.next_escalation_date}}</td>
+                <td class="align-middle text-center">{{item.escalation_history}}</td>
+                <td class="align-middle text-left" style="min-width:400px"><pre style="font-family:verdana">{{item.Updates}}</pre></td>
+                <td class="align-middle text-center" style="width=40px"><input type="checkbox"  class = "Email" name="team"
+                           value="Project: {{item.ProjectId}}%0D%0ACircuit Ref: {{item.SvcNo}}%0D%0ACircuit status: {{item.SvcOrderStatus}}%0D%0AWorkOrder: {{item.WorkOrder}}%0D%0AWO status: {{item.WorkOrderStatus}}%0D%0ACRD: {{item.CRD}}%0D%0ASpeed: {{item.Speed}}%0D%0ARemarks: {{item.Updates}}"
+                           onchange="document.getElementById('Escalate').disabled = !this.checked;"/></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+<form>
+    <!-- Modal -->
+    <div class="modal fade" id="EmailModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalScrollableTitle">Email</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="InputEmail">Email address</label>
+                <input type="email" multiple=true class="form-control" id="InputEmail" aria-describedby="emailHelp">
+              </div>
+              <div class="form-group">
+                <label for="InputSubject">Subject</label>
+                <input type="text" class="form-control" id="InputSubject">
+              </div>
+              <!--<div class="form-group">-->
+              <label for="InputBody">Body</label>
+              <textarea type="text" rows="7.5" style="resize: none;" maxlength="500" class="form-control" id="InputBody"></textarea>
+              <!--</div>-->
+              <!-- <button type="submit" class="btn btn-primary">Submit</button>-->
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+</form>
+    <script>
+
+        $(document).on("click", ".Escalate", function () {
+             var myBookId = $(this).data('id');
+             var to = $(this).data('title');
+             console.log(myBookId);
+             console.log(to);
+             $(".modal-body #InputEmail").val( myBookId );
+             $(".modal-body #InputSubject").val( myBookId );
+             // As pointed out in comments,
+             // it is unnecessary to have to manually call the modal.
+             // $('#addBookDialog').modal('show');
+        });
     </script>
-    <button id="Escalate"  name='Escalate_Button 'class="btn btn-outline-success"  onclick="sendEmail()" disabled >Escalate</button>
-</div>
-</nav>
-
-<br/>
-
-<div style="height: 400px; overflow: auto" scrollable>
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr >
-             <th> ProjectId</th>
-             <th> CircuitId</th>
-             <th> CircuitStatus</th>
-             <th> CRD</th>
-             <th> WorkOrder</th>
-             <th> WorkOrderStatus</th>
-             <th> Speed</th>
-             <th> Updates</th>
-             <th> Escalate </th>
-        </tr>
-        </thead>
-        {% for item in data %}
-        <tr>
-            <td>{{item.ProjectId}}</td>
-            <td>{{item.SvcNo}}</td>
-            <td>{{item.SvcOrderStatus}}</td>
-            <td>{{item.CRD}}</td>
-            <td>{{item.WorkOrder}}</td>
-            <td>{{item.WorkOrderStatus}}</td>
-            <td>{{item.Speed}}</td>
-            <td>{{item.Updates}}</td>
-            <td><input type="checkbox"  class = "Email" name="team"
-                       value="{{item.ProjectId}},{{item.WorkOrder}},{{item.WorkOrderStatus}},{{item.SvcNo}},{{item.SvcOrderStatus}},{{item.CRD}},{{item.Speed}},{{item.Updates}}"
-                       onchange="document.getElementById('Escalate').disabled = !this.checked;"/></td>
-        </tr>
-    {% endfor %}
-</table>
-
-
-
-</div>
-
-
 {% endblock %}

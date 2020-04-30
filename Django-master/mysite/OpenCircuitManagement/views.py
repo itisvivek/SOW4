@@ -10,7 +10,7 @@ import sys
 # Create your views here.
 from django.shortcuts import render
 from django.shortcuts import redirect
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 # from BillingStatusTracker.views import username
 from SearchWo.models import Pegasus
@@ -24,6 +24,7 @@ c = ''
 params = {}
 list_upd = []
 
+@login_required(login_url='/')
 def OpenCircuits(request):
     username = request.user.get_username()
     global texta, O, a, new_dict,list_result, c, params, list_upd

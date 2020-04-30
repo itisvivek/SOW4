@@ -62,35 +62,47 @@
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th> ProjectId</th>
-                <th> CircuitId</th>
-                <th> CircuitStatus</th>
-                <th> CRD</th>
-                <th> WorkOrder</th>
-                <th> WorkOrderStatus</th>
-                <th> Speed</th>
-                <th> Updates</th>
-                <th> Comments</th>
-                <th></th>
+                 <th class="align-middle text-center"> Project Id</th>
+                 <th class="align-middle text-center"> Service Ref</th>
+                 <th class="align-middle text-center"> Service Status</th>
+                 <th class="align-middle text-center"> Customer Received Date</th>
+                 <th class="align-middle text-center"> Work Order</th>
+                 <th class="align-middle text-center"> Work Order Status</th>
+                 <th class="align-middle text-center"> Speed</th>
+                 <th class="align-middle text-center"> Order type</th>
+                 <th class="align-middle text-center"> Task</th>
+                 <th class="align-middle text-center"> Next Escalation Level</th>
+                 <th class="align-middle text-center"> Next Escalation Date</th>
+                 <th class="align-middle text-center"> Escalation History</th>
+                 <th class="align-middle text-center"> Updates</th>
+                <th class="align-middle text-center"> Comments</th>
+                <th class="align-middle text-center"> </th>
             </tr>
             </thead>
+            <body>
             {% for item in data %}
                 <tr>
-                    <td>{{ item.ProjectId }}</td>
-                    <td>{{ item.SvcNo }}</td>
-                    <td>{{ item.SvcOrderStatus }}</td>
-                    <td>{{ item.CRD }}</td>
-                    <td>{{ item.WorkOrder }}</td>
-                    <td>{{ item.WorkOrderStatus }}</td>
-                    <td>{{ item.Speed }}</td>
-                    <td style="min-width:250px" height="200px">{{ item.Updates }}</td>
+                    <td class="align-middle text-center">{{item.ProjectId}}</td>
+                    <td class="align-middle text-center">{{item.SvcNo}}</td>
+                    <td class="align-middle text-center">{{item.SvcOrderStatus}}</td>
+                    <td class="align-middle text-center" style="min-width:125px">{{item.CRD}}</td>
+                    <td class="align-middle text-center">{{item.WorkOrder}}</td>
+                    <td class="align-middle text-center">{{item.WorkOrderStatus}}</td>
+                    <td class="align-middle text-center">{{item.Speed}}</td>
+                    <td class="align-middle text-center">{{item.order_type}}</td>
+                    <td class="align-middle text-center"style="min-width:125px">{{item.task_name}}</td>
+                    <td class="align-middle text-center">{{item.next_escalation_level}}</td>
+                    <td class="align-middle text-center">{{item.next_escalation_date}}</td>
+                    <td class="align-middle text-center">{{item.escalation_history}}</td>
+                    <td class="align-middle text-center" style="min-width:200px">{{item.Updates}}</td>
                     <td><textarea id="AreaCom" class="Com" rows="4" cols="50" maxlength="500" name="area"
                                   placeholder="Enter your comments here"></textarea></td>
-                    <td><input type="checkbox" class="Updates" name="team" value="{{ item.CircuitId }}"
+                    <td class="align-middle text-center"><input type="checkbox" class="Updates" name="team" value="{{ item.CircuitId }}"
                                onchange="document.getElementById('com').disabled = !this.checked;"/></td>
 
                 </tr>
             {% endfor %}
+        </body>
         </table>
 
 

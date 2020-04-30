@@ -5,11 +5,11 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Pegasus
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.decorators import login_required
 
 P=''
 params={}
-
+@login_required(login_url='/')
 def SearchWo(request):
     #params = Pegasus.objects.all()
     username = request.user.get_username()

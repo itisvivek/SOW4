@@ -1,57 +1,102 @@
 {% extends 'Base.html' %}
 
 {% block content %}
-    <div id="page-content-wrapper">
-        <div class="container-fluid mr-4 ml-1">
-            <h1 class="container-fluid my-4" style='text-align:center'><B>My Project Dashboard</B></h1>
-                <div class="shadow p-3 mb-5 bg-white rounded">
-                    <table style="border: 1px solid transparent" border="0" bordercolor="white" align="middle">
-                        <tr align="left">
-                            <th style ="background-color:white"></th>
-                            <th style ="background-color:white">Total number of circuits</th>
-                            <th style ="background-color:white"></th>
-                            <th style ="background-color:white"></th>
-                            <th style ="background-color:white">Total number of circuits closed</th>
-                            <th style ="background-color:white"></th>
-                        </tr>
+<div id="page-content-wrapper">
+    <div class="container-fluid mr-4 ml-1">
+        <h1 class="container-fluid my-4" style='text-align:center' style="color:red;"><B>My Project Dashboard</B></h1>
 
-                        <td width="100" height="50"></td>
-                        <td align='middle' width="200" height="50" style="font-size:40px">{{ count_ckts }}</td>
-                        <td width="200" height="50"></td>
-                        <td width="200" height="50"></td>
-                        <td align='middle' width="250" height="50" style="font-size:40px">{{ count_ckts_closed }}</td>
-                        <td width="50" height="50"></td>
-                    </table>
-                </div>
+        {% if graph %}
+        <div class="shadow h-auto p-3 mb-5 mx-2 bg-white rounded">
+            <table style="border: 1px solid transparent" border="1" bordercolor="black" align="middle">
+                <tr align="middle">
+                    <th style="background-color:white">Projects</th>
+                    <th style="background-color:white"></th>
+                    <th style="background-color:white">Circuits / SVC Reference</th>
+                    <th style="background-color:white"></th>
+                    <th style="background-color:white">Work Orders</th>
+                </tr>
+                <td width="100" height="100">{{ graph|safe }}</td>
+                <td width="100" height="100"></td>
+                <td width="100" height="100">{{ graph2|safe }}</td>
+                <td width="100" height="100"></td>
+                <td width="100" height="100">{{ graph1|safe }}</td>
+            </table>
+        </div>
 
-                <br/>
+        <div class="shadow h-auto p-3 mb-5 mx-auto bg-white rounded">
+            <H4 class="container-fluid my-4" style='text-align:center'> Current status of all projects: </H4>
+            <table class ="ml-5 pl-10" style="border: 1px solid transparent" border="0" bordercolor="white" align="middle">
+                <tr align="right">
+                </tr>
+                <td>{{ graph3|safe }}</td>
+                <td style="font-size:20px">
+                    Total Circuits: {{ count_ckts }} <br/>
+                    Total Closed Circuits: {{ count_ckts_closed }}
+                    <br/><br/>
+                    Total Work Orders: {{ count_wo }} <br/>
+                    Total Closed Work Orders: {{ count_wo_closed }}
+                </td>
+            </table>
+        </div>
+        {# {% else %}#}
+        {# <p>No graph was provided.</p>#}
+        {% endif %}
 
-                {% if graph %}
-                    <div class="shadow p-3 mb-5 bg-white rounded">
-                        <table style="border: 1px solid transparent "  border="0" bordercolor="white" align="middle">
-                            <tr align="middle">
-                                <th style ="background-color:white" >Number of Projects</th>
-                                <th style ="background-color:white">Number of Work Orders</th>
-                            </tr>
+        <br/>
 
-                            <td width="100" height="100">{{ graph|safe }}</td>
-                            <td width="100" height="100">{{ graph1|safe }}</td>
+        <div class="shadow p-3 mb-5 bg-white rounded">
 
-                        </table>
-                    </div>
+            <H4 class="container-fluid my-4" style='text-align:center'> Circuits which are nearing to their due
+                date: </H4>
+            <div style="height: 400px; overflow: auto" scrollable>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th class="align-middle text-center"> Project Id</th>
+                        <th class="align-middle text-center"> Service Ref</th>
+                        <th class="align-middle text-center"> Service Status</th>
+                        <th class="align-middle text-center"> Customer Received Date</th>
+                        <th class="align-middle text-center"> Work Order</th>
+                        <th class="align-middle text-center"> Work Order Status</th>
+                        <th class="align-middle text-center"> Speed</th>
+                        <th class="align-middle text-center"> Order type</th>
+                        <th class="align-middle text-center"> Task</th>
+                        <th class="align-middle text-center"> Next Escalation Level</th>
+                        <th class="align-middle text-center"> Next Escalation Date</th>
+                        <th class="align-middle text-center"> Escalation History</th>
+                        <th class="align-middle text-center"> Updates</th>
+                    </tr>
+                    </thead>
+                    {% for item in data %}
+                    <tr>
+                        <td class="align-middle text-center">{{item.ProjectId}}</td>
+                        <td class="align-middle text-center">{{item.SvcNo}}</td>
+                        <td class="align-middle text-center">{{item.SvcOrderStatus}}</td>
+                        <td class="align-middle text-center" style="min-width:125px">{{item.CRD}}</td>
+                        <td class="align-middle text-center">{{item.WorkOrder}}</td>
+                        <td class="align-middle text-center">{{item.WorkOrderStatus}}</td>
+                        <td class="align-middle text-center">{{item.Speed}}</td>
+                        <td class="align-middle text-center">{{item.order_type}}</td>
+                        <td class="align-middle text-center" style="min-width:125px">{{item.task_name}}</td>
+                        <td class="align-middle text-center">{{item.next_escalation_level}}</td>
+                        <td class="align-middle text-center">{{item.next_escalation_date}}</td>
+                        <td class="align-middle text-center">{{item.escalation_history}}</td>
+                        <td class="align-middle text-left" style="min-width:400px"><pre style="font-family:verdana">{{item.Updates}}</pre></td>
+                    </tr>
+                    {% endfor %}
+                </table>
 
-                    {{ graph2|safe }}
-                {% else %}
-                    <p>No graph was provided.</p>
-                {% endif %}
 
+            </div>
 
 
         </div>
-        <!--      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>-->
-        <!--      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>-->
+
     </div>
-    <!-- /#page-content-wrapper -->
+    <!--      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>-->
+    <!--      <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>-->
+</div>
+<!-- /#page-content-wrapper -->
 
 
 {% endblock %}

@@ -45,9 +45,9 @@ https://pubads.g.doubleclick.net:443/ssai/event/yeYP86THQ4yl7US8Zx5eug/master.m3
 https://pubads.g.doubleclick.net:443/ssai/event/Syu8F41-R1y_JmQ7x0oNxQ/master.m3u8
 #EXTINF: -1 tvg-id="SONY SPORTS TEN 3 HD" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/Ten3_HD.png" group-title="Sony Liv", SONY TEN 3 HD
 https://pubads.g.doubleclick.net:443/ssai/event/nmQFuHURTYGQBNdUG-2Qdw/master.m3u8
-#EXTINF: -1 tvg-id="SONY SPORTS TEN 4 HD" tvg-logo="https://origin-staticv2.sonyliv.com/masthead_logo/SonyTEN4HD_Masthead_Logo.png" group-title="Sony Liv", SONY TEN 4 HD
+#EXTINF: -1 tvg-id="1000119186" tvg-logo="https://origin-staticv2.sonyliv.com/masthead_logo/SonyTEN4HD_Masthead_Logo.png" group-title="Sony Liv", SONY TEN 4 HD
 https://pubads.g.doubleclick.net/ssai/event/x4LxWUcVSIiDaq1VCM7DSA/master.m3u8
-#EXTINF: -1 tvg-id="SONY SPORTS TEN 5 HD" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/Six_HD.png" group-title="Sony Liv", SONY TEN 5 HD
+#EXTINF: -1 tvg-id="1000009281" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/Six_HD.png" group-title="Sony Liv", SONY TEN 5 HD
 https://pubads.g.doubleclick.net:443/ssai/event/DD7fA-HgSUaLyZp9AjRYxQ/master.m3u8
 #EXTINF: -1 tvg-id="SONY SPORTS TEN 1" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/Ten_1.png" group-title="Sony Liv", SONY TEN 1
 https://pubads.g.doubleclick.net/ssai/event/4_pnLi2QTe6bRGvvahRbfg/master.m3u8
@@ -77,6 +77,8 @@ https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg00864-shemarooenterta-shemabollywoo
 https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-hd/manifest.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Hindi Movies",Bollywood Classic HD
 https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/bollywood-classic/manifest.m3u8
+#EXTINF:-1 tvg-id="BOLLYWOOD PRIME" tvg-logo="https://a.jsrdn.com/hls/23013/bollywood-prime/poster_20211202_231541.jpg"  group-title="Hindi Movies",BOLLYWOOD PRIME (US)
+https://dai.google.com/linear/hls/event/yvQpXDAeRMGU25KTu--V6Q/master.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Hindi Movies", The Movie Club
 https://cc-jytb1qhmgqh5a.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-jytb1qhmgqh5a/playlist.m3u8
 #EXTINF:-1 tvg-logo="" group-title="Hindi Movies", South Station
@@ -155,6 +157,10 @@ https://d35j504z0x2vu2.cloudfront.net/v1/manifest/0bc8e8376bd8417a1b6761138aa41c
 https://cdn2.pishow.tv/live/141/master.m3u8
 #EXTINF:-1 tvg-id="E24.in" tvg-logo="https://i.imgur.com/vCaPNTe.png" group-title="Hindi Music",E 24
 https://live-e24.dailyhunt.in/eternowsa/live/amlst:E24_,b256,b512,b1024,b1824,.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="EPIC" tvg-logo="http://imagesdishtvd2h.whatsonindia.com/dasimages/channel/landscape/360x270/MljTkYku.png"   group-title="Infotainment Channels",EPIC (IN)
+https://epiconvh.s.llnwi.net/epic/master.m3u8
+#EXTINF:-1 tvg-id="ISHARA" tvg-logo="https://www.isharachannel.com/wp-content/uploads/2022/08/Ishara_n1_logo.png"  group-title="Infotainment Channels",ISHARA (IN)
+https://epiconvh.s.llnwi.net/ishaara/master.m3u8
 #EXTINF:-1 group-title="Infotainment Channels" tvg-logo="https://d229kpbsb5jevy.cloudfront.net/tv/480/270/languages/4ktravel_960X540.jpg", 4K Travel
 https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/4k-travel-tv/manifest.m3u8
 #EXTINF:-1 tvg-id="FOOD FOOD" group-title="Infotainment Channels" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/1/1f/Food_Food.png",FOOD FOOD
@@ -187,6 +193,15 @@ https://xlbor37ydvaj-hls-live.wmncdn.net/firstindianewstv1/live.stream/index.m3u
 https://d233nwklwv8p4.cloudfront.net/out/v1/860cb318d23a4c64b58c9d625281170c/index_3.m3u8
 #EXTINF:-1 tvg-id="ZeeNews.in" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Zee_news.svg/512px-Zee_news.svg.png" group-title="News",Zee News [Not 24/7]
 https://ythls.armelin.one/channel/UCIvaYmXn910QMdemBG3v1pQ.m3u8
+#EXTINF:-1 tvg-id="NEWS 18 INDIA" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/News_18_India.png/220px-News_18_India.png"  group-title="Hindi News",NEWS 18 INDIA (IN)
+https://nw18live.cdn.jio.com/bpk-tv/News18_India_NW18_MOB/output01/index.m3u8?__hdnea__=st=1668078327~exp=1668164727~acl=/*~hmac=511e50c537d634de539610771757472844e355fa465ca859dbe44ffa191eec09
+#EXTINF:-1 tvg-id="CNBC AWAAZ" tvg-logo="https://www.adgully.com/img/400/2009-09-CNBC-Awaaz-Bhaskar-Group.jpg"  group-title="Hindi News",CNBC AWAAZ (IN)
+https://nw18live.cdn.jio.com/bpk-tv/CNBC_Awaaz_NW18_MOB/output01/index.m3u8?__hdnea__=st=1657346149~exp=1657432549~acl=/*~hmac=0410963d1f6a72ddc5f48d78b08e96300dd8ce6dcdb4fd1e41f8f8369b4f0e69
+https://feeds.intoday.in/aajtak/api/master.m3u8
+#EXTINF:-1 tvg-id="GNT" tvg-logo="http://sgdccdnems04.cdnsrv.jio.com/jiotv.catchup.cdn.jio.com/dare_images/images/Tez.png"  group-title="Hindi News",GNT (IN)
+https://feeds.intoday.in/gnt/api/master.m3u8
+#EXTINF:-1 tvg-id="NDTV INDIA" tvg-logo="https://www.thenewsminute.com/sites/default/files/styles/news_detail/public/NDTV_hindi_750x500_screnngrab.jpg"  group-title="Hindi News",NDTV INDIA (IN)
+https://ndtvindiaelemarchana.akamaized.net/hls/live/2003679-b/ndtvindia/master.m3u8
 #EXTINF:-1 tvg-id="AmarUjala.in" tvg-logo="https://imgur.com/ndQ8LZp" group-title="Hindi News",AmarUjala
 https://ythls.armelin.one/channel/UCP_wvXToU5ohFLbTAkatvsw.m3u8
 #EXTINF:-1 tvg-id="KNewsIndia.in" tvg-logo="https://i.imgur.com/LeBL7ML.png" group-title="Hindi News",K News

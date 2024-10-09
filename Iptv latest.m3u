@@ -326,13 +326,13 @@ https://raw.githubusercontent.com/subirkumarpaul/My-iptv/main/Discovery-Science.
 https://denver1769.pages.dev/Discovery/animal_planet_hd_english.m3u8
 
 #EXTINF:-1 tvg-id="242" tvg-name="Discovery"  group-title="Infotainment Channels" tvg-language="English" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/Discovery.png",Discovery Hindi
-https://github.com/itisvivek/SOW4/blob/master/discoveryhindi.m3u8
+https://raw.githubusercontent.com/itisvivek/SOW4/refs/heads/master/discoveryhindi.m3u8
 
 #EXTINF:-1 tvg-id="242" tvg-name="Discovery"  group-title="Infotainment Channels" tvg-language="English" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/Discovery.png",Discovery English
-https://github.com/itisvivek/SOW4/blob/master/discoveryenglish.m3u8
+https://raw.githubusercontent.com/itisvivek/SOW4/refs/heads/master/discoveryenglish.m3u8
 
 #EXTINF:-1 tvg-id="541" tvg-name="Discovery Turbo" group-title="Infotainment Channels" tvg-language="English" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/Discovery_Turbo.png",Discovery Turbo
-https://github.com/itisvivek/SOW4/blob/master/Discovery_Turbo.m3u8
+https://raw.githubusercontent.com/itisvivek/SOW4/refs/heads/master/Discovery_Turbo.m3u8
 
 
 
